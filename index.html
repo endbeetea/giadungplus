@@ -81,6 +81,48 @@ tr:hover td{background:rgb(var(--c-card-alt))}
 #sidebar::-webkit-scrollbar,#content::-webkit-scrollbar{width:4px}
 #sidebar::-webkit-scrollbar-thumb{background:rgb(var(--c-line-strong));border-radius:2px}
 #content::-webkit-scrollbar-thumb{background:rgb(var(--c-line));border-radius:2px}
+
+  /* SOS FLOWCHART */
+  .sos-wrap { background: #0f1117; border-radius: 12px; padding: 28px 20px; }
+  .sos-flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .sos-node { border-radius: 10px; padding: 12px 18px; text-align: center; font-weight: 600; font-size: 13px; width: 100%; max-width: 460px; font-family: 'Inter', sans-serif; }
+  .sos-start { background: #1e2130; border: 2px solid #3d4263; color: #94a3b8; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 50px; max-width: 300px; }
+  .sos-action { background: #1a1f35; border: 2px solid #2d3561; color: #e2e8f0; }
+  .sos-decision { background: #1e1a2e; border: 2px solid #4c1d95; color: #c4b5fd; }
+  .sos-decision .sos-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7c3aed; margin-bottom: 4px; }
+  .sos-section { background: #ff6b3510; border: 2px solid #ff6b35; color: #ff6b35; font-weight: 800; font-size: 12px; max-width: 340px; }
+  .sos-resolve { background: #0f2018; border: 2px solid #166534; color: #86efac; font-size: 12px; border-radius: 10px; padding: 14px 18px; }
+  .sos-resolve .sos-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #16a34a; margin-bottom: 6px; }
+  .sos-resolve ul { list-style: none; text-align: left; }
+  .sos-resolve ul li { padding: 3px 0 3px 16px; position: relative; color: #86efac; font-size: 12px; font-weight: 500; }
+  .sos-resolve ul li::before { content: '→'; position: absolute; left: 0; color: #22c55e; }
+  .sos-end { background: #ff6b3515; border: 2px solid #ff6b35; color: #ff6b35; border-radius: 50px; max-width: 380px; font-weight: 800; font-size: 12px; }
+  .sos-arr { width: 2px; background: #2d3561; height: 20px; position: relative; }
+  .sos-arr::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #2d3561; }
+  .sos-arr.o { background: #ff6b3560; }
+  .sos-arr.o::after { border-top-color: #ff6b3560; }
+  .sos-branch { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  .sos-col { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .sos-col .sos-node { max-width: 100%; }
+  .sos-blabel { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 6px; }
+  .sos-blabel.c1 { background: #1a2035; color: #60a5fa; border: 1px solid #1e40af; }
+  .sos-blabel.c2 { background: #2e2035; color: #c084fc; border: 1px solid #6b21a8; }
+  .sos-blabel.yes { background: #1a2e1a; color: #4ade80; border: 1px solid #166534; }
+  .sos-blabel.no { background: #2e1a1a; color: #f87171; border: 1px solid #991b1b; }
+  .sos-case { background: #0f1f35; border: 2px solid #1e4d8c; color: #60a5fa; font-size: 12px; }
+  .sos-case .sos-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #3b82f6; margin-bottom: 3px; }
+  .sos-sub { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+  .sos-legend { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 20px; }
+  .sos-leg-item { background: #1a1f35; border: 1px solid #2d3561; border-radius: 8px; padding: 10px 12px; }
+  .sos-leg-item .sos-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #64748b; margin-bottom: 4px; }
+  .sos-leg-item p { font-size: 11px; color: #94a3b8; line-height: 1.6; }
+  .sos-leg-item strong { color: #f97316; }
+  .sos-badge { display: inline-block; background: #ff6b35; color: white; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+  .sos-h1 { font-size: 20px; font-weight: 800; color: #fff; text-align: center; margin-bottom: 4px; }
+  .sos-h1 span { color: #ff6b35; }
+  .sos-sub-title { font-size: 12px; color: #6b7280; text-align: center; margin-bottom: 24px; }
+  .sos-step { display: inline-block; background: #ff6b35; color: white; font-size: 10px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; line-height: 18px; text-align: center; margin-right: 5px; vertical-align: middle; }
+  .sos-checkpoint { background: #1a1225; border: 2px solid #5b21b6; color: #e9d5ff; max-width: 460px; }
 </style>
 </head>
 <body>
@@ -117,6 +159,8 @@ tr:hover td{background:rgb(var(--c-card-alt))}
       <div class="nav-item" onclick="loadDoc('kho','nhat-hang')" data-search="kho nhặt hàng batch xe đẩy">SOP Nhặt hàng theo batch</div>
       <div class="nav-item" onclick="loadDoc('kho','ban-giao-goi')" data-search="kho bàn giao nv gói ưu tiên">SOP Bàn giao NV Gói</div>
       <div class="nav-item" onclick="loadDoc('kho','dong-goi')" data-search="kho đóng gói quy cách thuỷ tinh">SOP Quy cách đóng gói</div>
+      <div class="nav-item" onclick="loadDoc('kho','quy-dinh')" data-search="kho quy định nội bộ kỷ luật phạt">Quy định nội bộ</div>
+      <div class="nav-item" onclick="loadDoc('kho','don-sos')" data-search="kho đơn sos check-in đầu ca xử lý">Quy trình đơn SOS</div>
     </div>
   </div>
   <div class="nav-section" data-dept-group="mkt">
@@ -408,6 +452,134 @@ const docs = {
       <div class="warn-box">⚠️ Lỗi &gt; 3 lần/tháng → không nhận thưởng chuyên cần &amp; thưởng hiệu suất team tháng đó.</div>
     ` }
   },
+  'quy-dinh': { title: 'Quy định nội bộ Kho SG', date: 'Tháng 4/2026', owner: 'Quản lý Kho SG', body: `
+      <h2>Áp dụng từ tháng 4/2026 — Bắt buộc thực hiện đúng 100%</h2>
+
+      <h2>Điều 1 — Đăng ký &amp; theo dõi lịch làm việc</h2>
+      <p>Đăng ký lịch vào trước 15h T5 hằng tuần cho từ T2–CN tuần sau tại sheet: <strong>GDP_Lịch làm_Kho SG_2026</strong>. Nhận lịch làm việc vào trước 23h T6 hằng tuần.</p>
+      <table><tr><th>Tình huống</th><th>Quy chế</th></tr>
+      <tr><td>Có lịch làm nhưng muốn nghỉ</td><td>Phải tìm người làm thay ca | Phải báo trước 24h</td></tr>
+      <tr><td>Đăng ký lịch nhưng không làm</td><td>Phạt <strong>-200k</strong> vào lương trong tháng</td></tr>
+      <tr><td>Ngày sale 15, 25, sale đôi hằng tháng</td><td>Lịch bắt buộc — không được từ chối</td></tr></table>
+
+      <h2>Điều 2 — Chấm công đúng và đủ</h2>
+      <p>Check in check out đầy đủ kể cả nghỉ trưa tại phần mềm. Phần mềm lỗi → check in bằng group Zalo (ảnh thấy mặt + khu vực kho, ghi Ngày + Tên + Giờ làm). Tự tổng hợp công lương và báo lại ADMIN vào ngày 31 hằng tháng.</p>
+      <table><tr><th>Quy định</th><th>Hệ quả</th></tr>
+      <tr><td>Không có ca — không check in</td><td>Check in không duyệt — không tính lương</td></tr>
+      <tr><td>Quên chấm công</td><td>Không chấm bù — chỉ chấm bù cuối ca/ngày với lỗi hệ thống</td></tr></table>
+
+      <h2>Điều 3 — Nhận &amp; trả bộ dụng cụ</h2>
+      <ul><li><strong>Check in:</strong> Kiểm tra khi nhận — đảm bảo không thiếu vật dụng, không cần đi lại trong ca làm</li>
+      <li><strong>Check out:</strong> Trả lại đúng các vật dụng đã nhận vào đầu ca. Trả phần lõi nếu sử dụng hết</li></ul>
+      <table><tr><th>Vi phạm</th><th>Mức phạt</th></tr>
+      <tr><td>Mất 1 món — Lần 1</td><td>Phạt 50k/lần</td></tr>
+      <tr><td>Mất 1 món — Lần 2</td><td>Phạt 100k/lần</td></tr>
+      <tr><td>Mất 1 món — Các lần sau</td><td>Phạt 200k/lần</td></tr></table>
+      <div class="note-box">ℹ️ Tiền phạt nạp vào quỹ mua lại vật dụng đã mất. Đóng phạt ngay hoặc x2 và trừ trong lương tháng.</div>
+
+      <h2>Điều 4 — Tiết kiệm đúng cách</h2>
+      <ul><li>Tiết kiệm vật dụng, sử dụng hết mới đổi cái mới</li>
+      <li>Tận dụng bìa, hộp, bóng khí cũ còn sử dụng được</li>
+      <li>Tắt đèn điện khi không có người qua lại | Tiết kiệm nước, tắt nước khi không ai theo dõi</li></ul>
+      <div class="warn-box">⚠️ Phạt 300k/lần — phát hiện người mở mà không tắt điện/nước. Các khoản tiết kiệm được sẽ bán phế liệu → toàn bộ vào quỹ thưởng/giải trí của team.</div>
+
+      <h2>Điều 5 — Không hút thuốc</h2>
+      <ul><li>Không hút thuốc trong khu vực kho hàng, khu vực có bìa giấy, hàng hoá, xe máy</li>
+      <li>Chỉ được hút thuốc tại khu vực được chỉ định: ngoài đường hoặc khu vực uống nước (không có bìa/hàng hoá)</li></ul>
+      <table><tr><th>Vi phạm</th><th>Hình thức xử lý</th></tr>
+      <tr><td>Lần 1</td><td>Phạt 500k — đóng phạt ngay</td></tr>
+      <tr><td>Lần 2</td><td>1/2 tháng lương</td></tr>
+      <tr><td>Lần 3</td><td>XA THẢI</td></tr></table>
+      <div class="danger-box">⚠️ Các vấn đề về cháy nổ sẽ do người vi phạm chịu toàn bộ trách nhiệm và đền bù.</div>
+
+      <h2>Điều 6 — Không cởi áo trong giờ làm</h2>
+      <p>Không cởi áo trong tất cả các khu vực: sân ngoài, sân trong, KV đóng gói, KV nhặt hàng, KV xử lý đơn.</p>
+      <div class="warn-box">⚠️ Phạt 50k/lần — đóng phạt ngay hoặc x2 và trừ trong lương tháng.</div>
+
+      <h2>Điều 7 — Vệ sinh sạch sẽ</h2>
+      <ul><li>Trả vật dụng đóng gói còn dư cuối ngày về đúng vị trí ADMIN quy định</li>
+      <li>Dọn rác trước khi check out | Để đồ cá nhân đúng vị trí quy định</li>
+      <li>Ăn xong, uống xong dọn dẹp ngay | Phòng ở gọn gàng, sạch sẽ | Giữ vệ sinh WC</li>
+      <li>Tham gia lịch trực theo phân công hằng tuần/tháng — trốn tránh → xa thải</li></ul>
+      <div class="warn-box">⚠️ Phạt 50k/lần/người. Không quy trách nhiệm được → phạt toàn team 50k/người/1 lỗi.</div>
+
+      <h2>Điều 8 — Không cho người lạ vào kho</h2>
+      <p>Các đối tượng phải xin phép trước hoặc chỉ vào khu vực quy định: bạn bè/người thân, shipper (chỉ khu vực lấy hàng), người thu mua ve chai, người bán gánh, hàng xóm.</p>
+      <div class="warn-box">⚠️ Phạt 50k/lần sai phạm. Chịu trách nhiệm và đền bù đối với bất kỳ nguyên nhân nào do người được dẫn vào gây ra.</div>
+
+      <h2>Điều 9 — Không có ca làm không vào khu vực làm việc</h2>
+      <p>Không có ca, không vào khu vực làm việc để bấm điện thoại, tám chuyện hoặc gây mất tập trung. Trừ trường hợp muốn tìm thêm việc để làm.</p>
+      <div class="warn-box">⚠️ Phạt 50k/lần vi phạm.</div>
+
+      <h2>Điều 10 — Có trách nhiệm với từng món hàng</h2>
+      <ul><li>Hàng không để đúng vị trí (đơn huỷ/hoàn/gói trùng/dư/SP chưa trả kệ) → hỏi AD vị trí và trả về đúng chỗ</li>
+      <li>Không để đơn hàng có cơ hội hư hỏng</li>
+      <li>Không có hành vi chọi/ném/liện/dẫm lên đơn hàng/sản phẩm</li></ul>
+      <table><tr><th>Vi phạm</th><th>Mức phạt</th></tr>
+      <tr><td>Hàng hoá không để đúng nơi quy định</td><td>Phạt 5k/bạn (toàn team)</td></tr>
+      <tr><td>Admin phát hiện khi kiểm tra đột xuất</td><td>Phạt AD 50k</td></tr>
+      <tr><td>Hành vi dẫm đạp/đá/ném/chọi/liện đơn</td><td>Phạt 100k/lần/người</td></tr>
+      <tr><td>Đơn hàng hư hỏng 1 phần/toàn bộ</td><td>Phạt 100% giá trị đơn hàng (xem như mua lại)</td></tr></table>
+    ` }
+  },
+  'quy-dinh': { title: 'Quy định nội bộ Kho SG', date: 'Tháng 4/2026', owner: 'Quản lý Kho SG', body: `<h2>Áp dụng từ T4/2026 — Bắt buộc thực hiện đúng 100%</h2><h2>Điều 1 — Đăng ký &amp; theo dõi lịch làm việc</h2><p>Đăng ký lịch vào trước 15h T5 hằng tuần cho từ T2–CN tuần sau tại sheet: <strong>GDP_Lịch làm_Kho SG_2026</strong>. Nhận lịch trước 23h T6 hằng tuần.</p><table><tr><th>Tình huống</th><th>Quy chế</th></tr><tr><td>Có lịch nhưng muốn nghỉ</td><td>Phải tìm người làm thay ca | Báo trước 24h</td></tr><tr><td>Đăng ký lịch nhưng không làm</td><td>Phạt -200k vào lương tháng</td></tr><tr><td>Ngày sale 15, 25, sale đôi</td><td>Lịch bắt buộc — không được từ chối</td></tr></table><h2>Điều 2 — Chấm công đúng và đủ</h2><p>Check in check out đầy đủ kể cả nghỉ trưa. Phần mềm lỗi → check in bằng group Zalo (ảnh mặt + khu vực kho + Ngày/Tên/Giờ). Tự tổng hợp công lương báo ADMIN ngày 31 hằng tháng.</p><table><tr><th>Quy định</th><th>Hệ quả</th></tr><tr><td>Không có ca — không check in</td><td>Không tính lương</td></tr><tr><td>Quên chấm công</td><td>Không chấm bù — chỉ chấm bù với lỗi hệ thống</td></tr></table><h2>Điều 3 — Nhận &amp; trả bộ dụng cụ</h2><ul><li>Check in: Kiểm tra khi nhận — không thiếu vật dụng, không cần đi lại trong ca</li><li>Check out: Trả lại đúng các vật dụng đã nhận. Trả phần lõi nếu sử dụng hết</li></ul><table><tr><th>Vi phạm</th><th>Mức phạt</th></tr><tr><td>Mất 1 món — Lần 1</td><td>50k/lần</td></tr><tr><td>Mất 1 món — Lần 2</td><td>100k/lần</td></tr><tr><td>Mất 1 món — Các lần sau</td><td>200k/lần</td></tr></table><div class="note-box">ℹ️ Đóng phạt ngay hoặc x2 mức phạt và trừ trong lương tháng.</div><h2>Điều 4 — Tiết kiệm đúng cách</h2><ul><li>Tiết kiệm vật dụng, sử dụng hết mới đổi | Tận dụng bìa, hộp, bóng khí cũ</li><li>Tắt đèn điện khi không có người | Tiết kiệm nước, tắt khi không ai theo dõi</li></ul><div class="warn-box">⚠️ Phạt 300k/lần — phát hiện người mở mà không tắt điện/nước. Khoản tiết kiệm được bán phế liệu → vào quỹ thưởng/giải trí team.</div><h2>Điều 5 — Không hút thuốc</h2><ul><li>Không hút thuốc trong kho, khu vực có bìa giấy, hàng hoá, xe máy</li><li>Chỉ được hút tại khu vực chỉ định: ngoài đường hoặc khu vực uống nước không có hàng/bìa</li></ul><table><tr><th>Vi phạm</th><th>Xử lý</th></tr><tr><td>Lần 1</td><td>Phạt 500k — đóng ngay</td></tr><tr><td>Lần 2</td><td>1/2 tháng lương</td></tr><tr><td>Lần 3</td><td>XA THẢI</td></tr></table><div class="danger-box">⚠️ Cháy nổ do vi phạm → người vi phạm chịu toàn bộ trách nhiệm và đền bù.</div><h2>Điều 6 — Không cởi áo trong giờ làm</h2><p>Không cởi áo trong tất cả khu vực: sân ngoài, sân trong, KV đóng gói, KV nhặt hàng, KV xử lý đơn.</p><div class="warn-box">⚠️ Phạt 50k/lần — đóng phạt ngay hoặc x2 và trừ trong lương tháng.</div><h2>Điều 7 — Vệ sinh sạch sẽ</h2><ul><li>Trả vật dụng đóng gói còn dư cuối ngày về đúng vị trí ADMIN quy định</li><li>Dọn rác trước khi check out | Đồ cá nhân đúng vị trí | Ăn xong dọn dẹp ngay</li><li>Phòng ở gọn gàng | Giữ vệ sinh WC | Tham gia lịch trực theo phân công — trốn tránh → xa thải</li></ul><div class="warn-box">⚠️ Phạt 50k/lần/người. Không quy trách nhiệm được → phạt toàn team 50k/người/1 lỗi.</div><h2>Điều 8 — Không cho người lạ vào kho</h2><p>Bạn bè/người thân phải xin phép trước. Shipper chỉ vào khu vực lấy hàng. Người thu mua ve chai, người bán gánh, hàng xóm theo quy định.</p><div class="warn-box">⚠️ Phạt 50k/lần sai phạm. Chịu trách nhiệm đền bù với mọi nguyên nhân do người được dẫn vào gây ra.</div><h2>Điều 9 — Không có ca làm không vào khu vực làm việc</h2><p>Không vào khu vực làm việc để bấm điện thoại, tám chuyện hoặc gây mất tập trung. Trừ trường hợp muốn tìm thêm việc.</p><div class="warn-box">⚠️ Phạt 50k/lần vi phạm.</div><h2>Điều 10 — Có trách nhiệm với từng món hàng</h2><ul><li>Hàng không đúng vị trí → hỏi AD và trả về đúng chỗ</li><li>Không để đơn hàng có cơ hội hư hỏng</li><li>Không có hành vi chọi/ném/liện/dẫm lên đơn hàng/sản phẩm</li></ul><table><tr><th>Vi phạm</th><th>Mức phạt</th></tr><tr><td>Hàng không để đúng nơi quy định</td><td>Phạt 5k/bạn (toàn team)</td></tr><tr><td>Admin phát hiện khi kiểm tra đột xuất</td><td>Phạt AD 50k</td></tr><tr><td>Hành vi dẫm đạp/đá/ném/chọi/liện đơn</td><td>Phạt 100k/lần/người</td></tr><tr><td>Đơn hàng hư hỏng 1 phần/toàn bộ</td><td>Phạt 100% giá trị đơn hàng</td></tr></table>` },
+  'don-sos': { title: 'Quy trình xử lý Đơn SOS đầu ca', date: 'Tháng 4/2026', owner: 'Quản lý / Đóng gói / Nhặt hàng', body: `
+    <div class="sos-wrap">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div class="sos-badge">SOP Kho — Check-in Đầu Ca</div>
+        <div class="sos-h1">Quy Trình Xử Lý <span>Đơn SOS</span></div>
+        <div class="sos-sub-title">Bước đầu tiên khi vào ca · Đóng gói &amp; Nhặt hàng</div>
+      </div>
+      <div class="sos-flow">
+        <div class="sos-node sos-start">🕐 BẮT ĐẦU CA</div>
+        <div class="sos-arr o"></div>
+        <div class="sos-node sos-action"><span class="sos-step">1</span> Vào kiểm tra <strong>Đơn hàng SOS</strong> → Lọc <strong>Hạn gửi: Ngày hôm trước</strong></div>
+        <div class="sos-arr"></div>
+        <div class="sos-node sos-decision"><div class="sos-label">⚡ Kiểm tra trạng thái</div>Có đơn nào ở trạng thái <strong>"Đã in chưa gói"</strong> hoặc <strong>"Chưa xử lý"</strong> không?</div>
+        <div class="sos-arr"></div>
+        <div class="sos-branch">
+          <div class="sos-col">
+            <div class="sos-blabel c1">🔶 Trạng thái 1: Đã in chưa gói</div>
+            <div class="sos-arr"></div>
+            <div class="sos-node sos-decision"><div class="sos-label">❓ Hỏi: Đơn đã được nhặt chưa?</div>Kiểm tra khu vực nhặt hàng</div>
+            <div class="sos-arr"></div>
+            <div class="sos-sub">
+              <div class="sos-col">
+                <div class="sos-blabel yes">✅ Nhặt rồi</div>
+                <div class="sos-arr"></div>
+                <div class="sos-node sos-case"><div class="sos-label">TH1 — Đã nhặt</div>Đơn đang ở đâu? Còn đơn nào chưa nhặt / không có trong khu vực nhặt?</div>
+                <div class="sos-arr"></div>
+                <div class="sos-node sos-resolve"><div class="sos-label">✅ Hướng xử lý</div><ul><li>Giao <strong>1 bạn GH duy nhất</strong> xử lý toàn bộ đơn cũ ngày hôm trước</li><li>Follow đến khi <strong>done</strong> mới giao tiếp hàng đợt mới</li><li>Nếu đã gói xong nhưng phát hiện sót → In lại &amp; nhặt ngay</li></ul></div>
+              </div>
+              <div class="sos-col">
+                <div class="sos-blabel no">❌ Chưa nhặt</div>
+                <div class="sos-arr"></div>
+                <div class="sos-node sos-case"><div class="sos-label">TH2 — Chưa nhặt</div>Đã in nhưng mất đơn vật lý hoặc chưa in thành đơn</div>
+                <div class="sos-arr"></div>
+                <div class="sos-node sos-resolve"><div class="sos-label">✅ Hướng xử lý</div><ul><li><strong>In lại</strong> toàn bộ đơn bị mất</li><li>Nhặt hàng ngay</li><li>Giao <strong>1 bạn GH duy nhất</strong> xử lý toàn bộ</li><li>Follow đến khi <strong>done</strong> mới giao đợt mới</li></ul></div>
+              </div>
+            </div>
+          </div>
+          <div class="sos-col">
+            <div class="sos-blabel c2">🔷 Trạng thái 2: Chưa xử lý</div>
+            <div class="sos-arr"></div>
+            <div class="sos-node sos-case"><div class="sos-label">Điều kiện tiên quyết</div>Đảm bảo các đơn "Đã in chưa gói" đã được <strong>gói xong</strong> và đã <strong>bắn đơn</strong></div>
+            <div class="sos-arr"></div>
+            <div class="sos-node sos-resolve"><div class="sos-label">✅ Hướng xử lý</div><ul><li>In tiếp tục tất cả đơn "Chưa xử lý"</li><li>Nhặt hàng cho toàn bộ đơn vừa in</li><li>Giao cho <strong>1 bạn GH duy nhất</strong> xử lý</li><li>Follow đến khi <strong>done</strong> mới giao đợt mới</li></ul></div>
+          </div>
+        </div>
+        <div class="sos-arr o" style="margin-top:8px;"></div>
+        <div class="sos-node sos-checkpoint"><strong>✓ Checkpoint:</strong> Tất cả đơn SOS ngày hôm trước đã được xử lý xong?</div>
+        <div class="sos-arr o"></div>
+        <div class="sos-node sos-end">🚀 TIẾP TỤC QUY TRÌNH NHẶT HÀNG THÔNG THƯỜNG</div>
+      </div>
+      <div class="sos-legend">
+        <div class="sos-leg-item"><div class="sos-label">NGUYÊN TẮC VÀNG</div><p>Luôn chỉ định <strong>1 bạn GH duy nhất</strong> xử lý đơn SOS cũ — không chia việc</p></div>
+        <div class="sos-leg-item"><div class="sos-label">NGUYÊN TẮC FOLLOW</div><p>Phải <strong>follow đến khi done</strong> — không giao đợt mới khi đợt cũ chưa xong</p></div>
+        <div class="sos-leg-item"><div class="sos-label">THỨ TỰ ƯU TIÊN</div><p>SOS ngày hôm trước → Chưa xử lý → Hàng nhặt đợt mới trong ngày</p></div>
+      </div>
+    </div>
+  ` },
   mkt: {
     label: '📣 Marketing',
     'chay-quang-cao': { title: 'Chạy quảng cáo Shopee Ads', date: 'T3/2026', owner: 'Marketing Manager', body: `<h2>Quy trình setup chiến dịch</h2><p>Điền nội dung SOP thực tế vào đây.</p>` },

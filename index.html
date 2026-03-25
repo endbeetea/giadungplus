@@ -6,10 +6,10 @@
 <title>SOP Nội Bộ — Gia Dụng Plus</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--c-page:241 245 249;--c-card:255 255 255;--c-card-alt:248 250 252;--c-raised:241 245 249;--c-heading:15 23 42;--c-body:100 116 139;--c-subtle:148 163 184;--c-line:226 232 240;--c-line-strong:203 213 225;--c-red:220 38 38;--sidebar-w:220px}
+:root{--c-page:241 245 249;--c-card:255 255 255;--c-heading:15 23 42;--c-body:100 116 139;--c-line:226 232 240;--c-red:220 38 38;--sidebar-w:220px}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;font-size:14px;background:rgb(var(--c-page));color:rgb(var(--c-heading));display:flex;height:100vh;overflow:hidden}
-#sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:rgb(var(--c-card));border-right:1px solid rgb(var(--c-line));height:100vh;overflow-y:auto;display:flex;flex-direction:column}
+#sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:rgb(var(--c-card));border-right:1px solid rgb(var(--c-line));height:100vh;overflow-y:auto;flex-shrink:0}
 .sidebar-logo{padding:14px 16px;border-bottom:1px solid rgb(var(--c-line));display:flex;align-items:center;gap:10px}
 .logo-icon{width:32px;height:32px;background:rgb(var(--c-red));border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:16px;flex-shrink:0}
 .logo-text{font-size:13px;font-weight:600;color:rgb(var(--c-heading));line-height:1.2}
@@ -17,112 +17,36 @@ body{font-family:'Inter',sans-serif;font-size:14px;background:rgb(var(--c-page))
 .sidebar-search{padding:10px 12px;border-bottom:1px solid rgb(var(--c-line));position:relative}
 .sidebar-search input{width:100%;background:rgb(var(--c-page));border:1px solid rgb(var(--c-line));border-radius:6px;padding:6px 10px 6px 30px;font-family:'Inter',sans-serif;font-size:12.5px;color:rgb(var(--c-heading));outline:none}
 .sidebar-search input:focus{border-color:rgb(var(--c-red))}
-.sidebar-search input::placeholder{color:rgb(var(--c-subtle))}
+.sidebar-search input::placeholder{color:rgb(var(--c-body))}
 .nav-section{padding:8px 0}
-.nav-section-label{padding:6px 16px 4px;font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:rgb(var(--c-subtle));display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
-.nav-section-label:hover{color:rgb(var(--c-body))}
+.nav-section-label{padding:6px 16px 4px;font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:rgb(var(--c-body));display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
 .nav-toggle{font-size:9px;transition:transform .2s}
 .nav-section.open .nav-toggle{transform:rotate(90deg)}
 .nav-items{display:none}
 .nav-section.open .nav-items{display:block}
-.nav-item{display:flex;align-items:center;gap:8px;padding:6px 16px 6px 28px;font-size:13px;color:rgb(var(--c-body));cursor:pointer;transition:all .1s;border-left:2px solid transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-item{display:flex;align-items:center;padding:6px 16px 6px 28px;font-size:13px;color:rgb(var(--c-body));cursor:pointer;transition:all .1s;border-left:2px solid transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .nav-item:hover{background:rgb(var(--c-page));color:rgb(var(--c-heading))}
 .nav-item.active{background:rgb(220 38 38/.06);color:rgb(var(--c-red));border-left-color:rgb(var(--c-red));font-weight:500}
 #main{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden}
 .topbar{background:rgb(var(--c-card));border-bottom:1px solid rgb(var(--c-line));padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgb(var(--c-body))}
-.breadcrumb .sep{color:rgb(var(--c-line-strong))}
 .breadcrumb .current{color:rgb(var(--c-heading));font-weight:500}
-.breadcrumb .home{cursor:pointer}
-.breadcrumb .home:hover{color:rgb(var(--c-heading))}
+.breadcrumb .home{cursor:pointer}.breadcrumb .home:hover{color:rgb(var(--c-heading))}
 .badge{background:rgb(220 38 38/.08);color:rgb(var(--c-red));padding:3px 10px;border-radius:20px;font-size:11.5px;font-weight:500}
-#content{flex:1;overflow-y:auto;padding:24px}
+#frame-wrap{flex:1;overflow:hidden}
+#content-frame{width:100%;height:100%;border:none;background:rgb(var(--c-page))}
+#home-view{flex:1;overflow-y:auto;padding:24px;display:none}
 .page-title{font-size:20px;font-weight:700;color:rgb(var(--c-heading));margin-bottom:4px}
 .page-desc{font-size:13px;color:rgb(var(--c-body));margin-bottom:20px}
 .dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
 .dept-card{background:rgb(var(--c-card));border:1px solid rgb(var(--c-line));border-radius:10px;padding:20px;cursor:pointer;transition:all .15s}
-.dept-card:hover{border-color:rgb(var(--c-line-strong));box-shadow:0 2px 12px rgb(0 0 0/.06);transform:translateY(-1px)}
+.dept-card:hover{border-color:rgb(203 213 225);box-shadow:0 2px 12px rgb(0 0 0/.06);transform:translateY(-1px)}
 .dept-card-icon{font-size:24px;margin-bottom:10px}
 .dept-card-name{font-size:14px;font-weight:600;color:rgb(var(--c-heading));margin-bottom:4px}
 .dept-card-count{font-size:12px;color:rgb(var(--c-body))}
 .dept-card-bar{height:3px;border-radius:2px;margin-top:14px}
-.doc-header{background:rgb(var(--c-card));border:1px solid rgb(var(--c-line));border-radius:10px;padding:20px 24px;margin-bottom:16px}
-.doc-dept-tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:500;color:rgb(var(--c-red));background:rgb(220 38 38/.08);padding:3px 10px;border-radius:20px;margin-bottom:10px}
-.doc-title{font-size:22px;font-weight:700;color:rgb(var(--c-heading));margin-bottom:10px;line-height:1.3}
-.doc-meta{display:flex;gap:20px;font-size:12.5px;color:rgb(var(--c-body))}
-.article-card{background:rgb(var(--c-card));border:1px solid rgb(var(--c-line));border-radius:10px;padding:24px}
-.article h2{font-size:15px;font-weight:600;color:rgb(var(--c-heading));margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid rgb(var(--c-line))}
-.article h2:first-child{margin-top:0}
-.article h3{font-size:13.5px;font-weight:600;color:rgb(var(--c-heading));margin:16px 0 8px}
-.article p{font-size:14px;line-height:1.7;color:rgb(var(--c-body));margin-bottom:12px}
-.article ul,.article ol{padding-left:18px;margin-bottom:12px}
-.article li{font-size:14px;line-height:1.7;color:rgb(var(--c-body));margin-bottom:4px}
-.step-card{border:1px solid rgb(var(--c-line));border-left:3px solid rgb(var(--c-red));border-radius:8px;padding:14px 16px;margin:10px 0;display:flex;gap:14px;background:rgb(var(--c-card-alt))}
-.step-num{font-size:18px;font-weight:700;color:rgb(var(--c-red));min-width:24px;line-height:1;margin-top:2px}
-.step-body h4{font-size:13.5px;font-weight:600;color:rgb(var(--c-heading));margin-bottom:4px}
-.step-body p{font-size:13px;color:rgb(var(--c-body));margin:0;line-height:1.6}
-.note-box{background:rgb(239 246 255);border:1px solid rgb(191 219 254);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:rgb(30 64 175);line-height:1.6}
-.warn-box{background:rgb(255 247 237);border:1px solid rgb(254 215 170);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:rgb(154 52 18);line-height:1.6}
-.danger-box{background:rgb(254 242 242);border:1px solid rgb(254 202 202);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:rgb(185 28 28);line-height:1.6}
-.success-box{background:rgb(240 253 244);border:1px solid rgb(187 247 208);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:rgb(21 128 61);line-height:1.6}
-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;border:1px solid rgb(var(--c-line));border-radius:8px;overflow:hidden}
-th{background:rgb(var(--c-page));color:rgb(var(--c-heading));padding:10px 14px;text-align:left;font-weight:600;font-size:12.5px;border-bottom:1px solid rgb(var(--c-line))}
-td{padding:10px 14px;border-bottom:1px solid rgb(var(--c-line));color:rgb(var(--c-body));vertical-align:top;line-height:1.6}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:rgb(var(--c-card-alt))}
-.flowchart{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin:16px 0}
-.flow-step{display:flex;align-items:center;gap:12px;background:rgb(var(--c-card-alt));border:1px solid rgb(var(--c-line));border-radius:8px;padding:10px 16px;width:100%;max-width:500px}
-.flow-icon{font-size:18px;min-width:28px;text-align:center}
-.flow-text{font-size:13.5px;color:rgb(var(--c-heading));font-weight:500}
-.flow-arrow{font-size:16px;color:rgb(var(--c-subtle));margin-left:14px}
-.priority-red{background:rgb(254 242 242);border-left:3px solid rgb(220 38 38);border-radius:6px;padding:10px 14px;margin:6px 0;font-size:13.5px}
-.priority-yellow{background:rgb(255 251 235);border-left:3px solid rgb(234 179 8);border-radius:6px;padding:10px 14px;margin:6px 0;font-size:13.5px}
-.priority-green{background:rgb(240 253 244);border-left:3px solid rgb(22 163 74);border-radius:6px;padding:10px 14px;margin:6px 0;font-size:13.5px}
-#sidebar::-webkit-scrollbar,#content::-webkit-scrollbar{width:4px}
-#sidebar::-webkit-scrollbar-thumb{background:rgb(var(--c-line-strong));border-radius:2px}
-#content::-webkit-scrollbar-thumb{background:rgb(var(--c-line));border-radius:2px}
-
-  /* SOS FLOWCHART */
-  .sos-wrap { background: #0f1117; border-radius: 12px; padding: 28px 20px; }
-  .sos-flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
-  .sos-node { border-radius: 10px; padding: 12px 18px; text-align: center; font-weight: 600; font-size: 13px; width: 100%; max-width: 460px; font-family: 'Inter', sans-serif; }
-  .sos-start { background: #1e2130; border: 2px solid #3d4263; color: #94a3b8; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 50px; max-width: 300px; }
-  .sos-action { background: #1a1f35; border: 2px solid #2d3561; color: #e2e8f0; }
-  .sos-decision { background: #1e1a2e; border: 2px solid #4c1d95; color: #c4b5fd; }
-  .sos-decision .sos-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7c3aed; margin-bottom: 4px; }
-  .sos-section { background: #ff6b3510; border: 2px solid #ff6b35; color: #ff6b35; font-weight: 800; font-size: 12px; max-width: 340px; }
-  .sos-resolve { background: #0f2018; border: 2px solid #166534; color: #86efac; font-size: 12px; border-radius: 10px; padding: 14px 18px; }
-  .sos-resolve .sos-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #16a34a; margin-bottom: 6px; }
-  .sos-resolve ul { list-style: none; text-align: left; }
-  .sos-resolve ul li { padding: 3px 0 3px 16px; position: relative; color: #86efac; font-size: 12px; font-weight: 500; }
-  .sos-resolve ul li::before { content: '→'; position: absolute; left: 0; color: #22c55e; }
-  .sos-end { background: #ff6b3515; border: 2px solid #ff6b35; color: #ff6b35; border-radius: 50px; max-width: 380px; font-weight: 800; font-size: 12px; }
-  .sos-arr { width: 2px; background: #2d3561; height: 20px; position: relative; }
-  .sos-arr::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #2d3561; }
-  .sos-arr.o { background: #ff6b3560; }
-  .sos-arr.o::after { border-top-color: #ff6b3560; }
-  .sos-branch { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-  .sos-col { display: flex; flex-direction: column; align-items: center; gap: 0; }
-  .sos-col .sos-node { max-width: 100%; }
-  .sos-blabel { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 6px; }
-  .sos-blabel.c1 { background: #1a2035; color: #60a5fa; border: 1px solid #1e40af; }
-  .sos-blabel.c2 { background: #2e2035; color: #c084fc; border: 1px solid #6b21a8; }
-  .sos-blabel.yes { background: #1a2e1a; color: #4ade80; border: 1px solid #166534; }
-  .sos-blabel.no { background: #2e1a1a; color: #f87171; border: 1px solid #991b1b; }
-  .sos-case { background: #0f1f35; border: 2px solid #1e4d8c; color: #60a5fa; font-size: 12px; }
-  .sos-case .sos-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #3b82f6; margin-bottom: 3px; }
-  .sos-sub { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
-  .sos-legend { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 20px; }
-  .sos-leg-item { background: #1a1f35; border: 1px solid #2d3561; border-radius: 8px; padding: 10px 12px; }
-  .sos-leg-item .sos-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #64748b; margin-bottom: 4px; }
-  .sos-leg-item p { font-size: 11px; color: #94a3b8; line-height: 1.6; }
-  .sos-leg-item strong { color: #f97316; }
-  .sos-badge { display: inline-block; background: #ff6b35; color: white; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
-  .sos-h1 { font-size: 20px; font-weight: 800; color: #fff; text-align: center; margin-bottom: 4px; }
-  .sos-h1 span { color: #ff6b35; }
-  .sos-sub-title { font-size: 12px; color: #6b7280; text-align: center; margin-bottom: 24px; }
-  .sos-step { display: inline-block; background: #ff6b35; color: white; font-size: 10px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; line-height: 18px; text-align: center; margin-right: 5px; vertical-align: middle; }
-  .sos-checkpoint { background: #1a1225; border: 2px solid #5b21b6; color: #e9d5ff; max-width: 460px; }
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-thumb{background:rgb(203 213 225);border-radius:2px}
 </style>
 </head>
 <body>
@@ -132,475 +56,127 @@ tr:hover td{background:rgb(var(--c-card-alt))}
     <div><div class="logo-text">Gia Dụng Plus</div><div class="logo-sub">SOP Nội Bộ</div></div>
   </div>
   <div class="sidebar-search">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:20px;top:50%;transform:translateY(-50%)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" placeholder="Tìm tài liệu..." id="searchInput" oninput="handleSearch(this.value)" style="padding-left:30px">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);color:#94a3b8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="Tìm tài liệu..." id="searchInput" oninput="handleSearch(this.value)">
   </div>
-  <div class="nav-section" data-dept-group="ketoan">
+
+  <div class="nav-section" data-file="ketoan.html">
     <div class="nav-section-label" onclick="toggleSection(this)">💰 Kế Toán <span class="nav-toggle">▶</span></div>
     <div class="nav-items">
-      <div class="nav-item" onclick="loadDoc('ketoan','xuat-hoadon')" data-search="kế toán xuất hóa đơn vat">Xuất hóa đơn VAT</div>
-      <div class="nav-item" onclick="loadDoc('ketoan','doi-soat')" data-search="kế toán đối soát công nợ">Đối soát công nợ Shopee</div>
-      <div class="nav-item" onclick="loadDoc('ketoan','bao-cao-thue')" data-search="kế toán báo cáo thuế">Báo cáo thuế định kỳ</div>
+      <div class="nav-item" onclick="load('ketoan.html','xuat-hoadon',this)" data-search="kế toán xuất hóa đơn vat">Xuất hóa đơn VAT</div>
+      <div class="nav-item" onclick="load('ketoan.html','doi-soat',this)" data-search="kế toán đối soát công nợ">Đối soát công nợ Shopee</div>
+      <div class="nav-item" onclick="load('ketoan.html','bao-cao-thue',this)" data-search="kế toán báo cáo thuế">Báo cáo thuế định kỳ</div>
     </div>
   </div>
-  <div class="nav-section" data-dept-group="cskh">
+
+  <div class="nav-section" data-file="cskh.html">
     <div class="nav-section-label" onclick="toggleSection(this)">💬 CSKH <span class="nav-toggle">▶</span></div>
     <div class="nav-items">
-      <div class="nav-item" onclick="loadDoc('cskh','xu-ly-khieu-nai')" data-search="cskh xử lý khiếu nại">Xử lý khiếu nại</div>
-      <div class="nav-item" onclick="loadDoc('cskh','hoan-tra')" data-search="cskh hoàn trả">Hoàn trả / đổi hàng</div>
-      <div class="nav-item" onclick="loadDoc('cskh','chat-tu-van')" data-search="cskh kịch bản chat">Kịch bản chat tư vấn</div>
+      <div class="nav-item" onclick="load('cskh.html','xu-ly-khieu-nai',this)" data-search="cskh xử lý khiếu nại">Xử lý khiếu nại</div>
+      <div class="nav-item" onclick="load('cskh.html','hoan-tra',this)" data-search="cskh hoàn trả đổi hàng">Hoàn trả / đổi hàng</div>
+      <div class="nav-item" onclick="load('cskh.html','chat-tu-van',this)" data-search="cskh kịch bản chat">Kịch bản chat tư vấn</div>
     </div>
   </div>
-  <div class="nav-section open" data-dept-group="kho">
+
+  <div class="nav-section open" data-file="kho.html">
     <div class="nav-section-label" onclick="toggleSection(this)">📦 Kho Vận <span class="nav-toggle">▶</span></div>
     <div class="nav-items">
-      <div class="nav-item active" onclick="loadDoc('kho','vao-ca')" data-search="kho vào ca check in chuẩn bị">SOP Vào ca & Check-in</div>
-      <div class="nav-item" onclick="loadDoc('kho','trong-ca')" data-search="kho trong ca lịch trình deadline">SOP Trong ca & Deadline</div>
-      <div class="nav-item" onclick="loadDoc('kho','nhat-hang')" data-search="kho nhặt hàng batch xe đẩy">SOP Nhặt hàng theo batch</div>
-      <div class="nav-item" onclick="loadDoc('kho','ban-giao-goi')" data-search="kho bàn giao nv gói ưu tiên">SOP Bàn giao NV Gói</div>
-      <div class="nav-item" onclick="loadDoc('kho','dong-goi')" data-search="kho đóng gói quy cách thuỷ tinh">SOP Quy cách đóng gói</div>
-      <div class="nav-item" onclick="loadDoc('kho','quy-dinh')" data-search="kho quy định nội bộ kỷ luật phạt">Quy định nội bộ</div>
-      <div class="nav-item" onclick="loadDoc('kho','don-sos')" data-search="kho đơn sos check-in đầu ca xử lý">Quy trình đơn SOS</div>
+      <div class="nav-item active" onclick="load('kho.html','vao-ca',this)" data-search="kho vào ca check in">SOP Vào ca & Check-in</div>
+      <div class="nav-item" onclick="load('kho.html','trong-ca',this)" data-search="kho trong ca deadline">SOP Trong ca & Deadline</div>
+      <div class="nav-item" onclick="load('kho.html','nhat-hang',this)" data-search="kho nhặt hàng batch">SOP Nhặt hàng theo batch</div>
+      <div class="nav-item" onclick="load('kho.html','ban-giao-goi',this)" data-search="kho bàn giao nv gói">SOP Bàn giao NV Gói</div>
+      <div class="nav-item" onclick="load('kho.html','dong-goi',this)" data-search="kho đóng gói quy cách">SOP Quy cách đóng gói</div>
+      <div class="nav-item" onclick="load('kho.html','quy-dinh',this)" data-search="kho quy định nội bộ kỷ luật">Quy định nội bộ</div>
+      <div class="nav-item" onclick="load('kho.html','don-sos',this)" data-search="kho đơn sos check-in đầu ca">Quy trình đơn SOS</div>
     </div>
   </div>
-  <div class="nav-section" data-dept-group="mkt">
+
+  <div class="nav-section" data-file="mkt.html">
     <div class="nav-section-label" onclick="toggleSection(this)">📣 Marketing <span class="nav-toggle">▶</span></div>
     <div class="nav-items">
-      <div class="nav-item" onclick="loadDoc('mkt','chay-quang-cao')" data-search="marketing shopee ads">Shopee Ads</div>
-      <div class="nav-item" onclick="loadDoc('mkt','content-san-pham')" data-search="marketing content sản phẩm">Content sản phẩm</div>
-      <div class="nav-item" onclick="loadDoc('mkt','flash-sale')" data-search="marketing flash sale">Đăng ký Flash Sale</div>
+      <div class="nav-item" onclick="load('mkt.html','chay-quang-cao',this)" data-search="marketing shopee ads">Shopee Ads</div>
+      <div class="nav-item" onclick="load('mkt.html','content-san-pham',this)" data-search="marketing content sản phẩm">Content sản phẩm</div>
+      <div class="nav-item" onclick="load('mkt.html','flash-sale',this)" data-search="marketing flash sale">Đăng ký Flash Sale</div>
     </div>
   </div>
-  <div class="nav-section" data-dept-group="hcns">
+
+  <div class="nav-section" data-file="hcns.html">
     <div class="nav-section-label" onclick="toggleSection(this)">👥 HCNS <span class="nav-toggle">▶</span></div>
     <div class="nav-items">
-      <div class="nav-item" onclick="loadDoc('hcns','onboarding')" data-search="hcns onboarding nhân viên">Onboarding nhân viên</div>
-      <div class="nav-item" onclick="loadDoc('hcns','cham-cong')" data-search="hcns chấm công nghỉ phép">Chấm công / nghỉ phép</div>
-      <div class="nav-item" onclick="loadDoc('hcns','luong-thuong')" data-search="hcns lương thưởng">Tính lương & thưởng</div>
+      <div class="nav-item" onclick="load('hcns.html','onboarding',this)" data-search="hcns onboarding nhân viên">Onboarding nhân viên</div>
+      <div class="nav-item" onclick="load('hcns.html','cham-cong',this)" data-search="hcns chấm công nghỉ phép">Chấm công / nghỉ phép</div>
+      <div class="nav-item" onclick="load('hcns.html','luong-thuong',this)" data-search="hcns lương thưởng">Tính lương & thưởng</div>
     </div>
   </div>
 </nav>
+
 <div id="main">
   <div class="topbar">
-    <div class="breadcrumb" id="breadcrumb"><span class="home" onclick="showHome()">SOP Nội Bộ</span></div>
-    <div><span class="badge">Kho Sài Gòn · T4/2026</span></div>
+    <div class="breadcrumb" id="breadcrumb">
+      <span class="home" onclick="showHome()">SOP Nội Bộ</span>
+    </div>
+    <span class="badge">Kho Sài Gòn · T4/2026</span>
   </div>
-  <div id="content">
-    <div id="homeView" style="display:none">
-      <div class="page-title">Quy trình & Hướng dẫn vận hành</div>
-      <div class="page-desc">Tài liệu SOP nội bộ — 5 bộ phận · Áp dụng từ T4/2026</div>
-      <div class="dept-grid">
-        <div class="dept-card" onclick="openDept('ketoan')"><div class="dept-card-icon">💰</div><div class="dept-card-name">Kế Toán</div><div class="dept-card-count">3 tài liệu</div><div class="dept-card-bar" style="background:rgb(220 38 38)"></div></div>
-        <div class="dept-card" onclick="openDept('cskh')"><div class="dept-card-icon">💬</div><div class="dept-card-name">CSKH</div><div class="dept-card-count">3 tài liệu</div><div class="dept-card-bar" style="background:rgb(22 163 74)"></div></div>
-        <div class="dept-card" onclick="openDept('kho')"><div class="dept-card-icon">📦</div><div class="dept-card-name">Kho Vận</div><div class="dept-card-count">5 SOP thực tế</div><div class="dept-card-bar" style="background:rgb(37 99 235)"></div></div>
-        <div class="dept-card" onclick="openDept('mkt')"><div class="dept-card-icon">📣</div><div class="dept-card-name">Marketing</div><div class="dept-card-count">3 tài liệu</div><div class="dept-card-bar" style="background:rgb(234 88 12)"></div></div>
-        <div class="dept-card" onclick="openDept('hcns')"><div class="dept-card-icon">👥</div><div class="dept-card-name">HCNS</div><div class="dept-card-count">3 tài liệu</div><div class="dept-card-bar" style="background:rgb(124 58 237)"></div></div>
-      </div>
+  <div id="home-view">
+    <div class="page-title">Quy trình & Hướng dẫn vận hành</div>
+    <div class="page-desc">Tài liệu SOP nội bộ — 5 bộ phận · Áp dụng từ T4/2026</div>
+    <div class="dept-grid">
+      <div class="dept-card" onclick="load('ketoan.html','xuat-hoadon',null)"><div class="dept-card-icon">💰</div><div class="dept-card-name">Kế Toán</div><div class="dept-card-count">3 tài liệu</div><div class="dept-card-bar" style="background:rgb(220 38 38)"></div></div>
+      <div class="dept-card" onclick="load('cskh.html','xu-ly-khieu-nai',null)"><div class="dept-card-icon">💬</div><div class="dept-card-name">CSKH</div><div class="dept-card-count">3 tài liệu</div><div class="dept-card-bar" style="background:rgb(22 163 74)"></div></div>
+      <div class="dept-card" onclick="load('kho.html','vao-ca',null)"><div class="dept-card-icon">📦</div><div class="dept-card-name">Kho Vận</div><div class="dept-card-count">7 tài liệu</div><div class="dept-card-bar" style="background:rgb(37 99 235)"></div></div>
+      <div class="dept-card" onclick="load('mkt.html','chay-quang-cao',null)"><div class="dept-card-icon">📣</div><div class="dept-card-name">Marketing</div><div class="dept-card-count">3 tài liệu</div><div class="dept-card-bar" style="background:rgb(234 88 12)"></div></div>
+      <div class="dept-card" onclick="load('hcns.html','onboarding',null)"><div class="dept-card-icon">👥</div><div class="dept-card-name">HCNS</div><div class="dept-card-count">3 tài liệu</div><div class="dept-card-bar" style="background:rgb(124 58 237)"></div></div>
     </div>
-    <div id="docView">
-      <div class="doc-header">
-        <div class="doc-dept-tag" id="docDept"></div>
-        <div class="doc-title" id="docTitle"></div>
-        <div class="doc-meta"><span>🗓 <strong id="docDate"></strong></span><span>👤 <strong id="docOwner"></strong></span></div>
-      </div>
-      <div class="article-card"><div class="article" id="docBody"></div></div>
-    </div>
+  </div>
+  <div id="frame-wrap" style="display:none">
+    <iframe id="content-frame" src="kho.html#vao-ca"></iframe>
   </div>
 </div>
+
 <script>
-
-const docs = {
-  ketoan: {
-    label: '💰 Kế Toán',
-    'xuat-hoadon': { title: 'Quy trình xuất hóa đơn VAT', date: 'T3/2026', owner: 'Trưởng phòng Kế toán', body: `<h2>Tổng quan</h2><p>Hướng dẫn kế toán viên xuất hóa đơn VAT cho khách hàng doanh nghiệp sau khi đơn hàng hoàn thành trên Shopee.</p><div class="note-box">ℹ️ Hóa đơn phải được xuất trong vòng <strong>24 giờ</strong> kể từ khi khách xác nhận đã nhận hàng.</div><h2>Các bước thực hiện</h2><div class="step-card"><div class="step-num">1</div><div class="step-body"><h4>Xác nhận thông tin khách hàng</h4><p>Kiểm tra tên công ty, mã số thuế, địa chỉ. Nếu thiếu → liên hệ CSKH bổ sung trước khi xuất.</p></div></div><div class="step-card"><div class="step-num">2</div><div class="step-body"><h4>Tạo hóa đơn trên phần mềm</h4><p>Đăng nhập phần mềm kế toán → Tạo hóa đơn mới → Nhập đúng số tiền, thuế suất VAT (8% hoặc 10%).</p></div></div><div class="step-card"><div class="step-num">3</div><div class="step-body"><h4>Ký điện tử &amp; gửi khách</h4><p>Ký số → xuất PDF → gửi email khách. Lưu bản gốc vào Google Drive theo tháng.</p></div></div><div class="step-card"><div class="step-num">4</div><div class="step-body"><h4>Ghi nhận vào sổ theo dõi</h4><p>Cập nhật sheet "Theo dõi hóa đơn tháng XX": số HĐ, ngày xuất, giá trị, trạng thái gửi.</p></div></div><h2>Bảng thuế suất</h2><table><tr><th>Nhóm hàng</th><th>Thuế suất</th><th>Ghi chú</th></tr><tr><td>Hàng hóa thông thường</td><td>10%</td><td>Mặc định</td></tr><tr><td>Thực phẩm, nông sản</td><td>8%</td><td>Theo NĐ giảm thuế</td></tr><tr><td>Hàng xuất khẩu</td><td>0%</td><td>Cần chứng từ</td></tr></table><div class="warn-box">⚠️ Không hủy hóa đơn đã gửi khách khi chưa có biên bản hủy ký hai bên.</div>` },
-    'doi-soat': { title: 'Đối soát công nợ Shopee', date: 'T3/2026', owner: 'Kế toán thanh toán', body: `<h2>Mục đích</h2><p>Đối soát số tiền Shopee thực chuyển với doanh thu ghi nhận, phát hiện và xử lý chênh lệch kịp thời.</p><h2>Tần suất: Mỗi thứ Hai</h2><div class="step-card"><div class="step-num">1</div><div class="step-body"><h4>Tải báo cáo từ Shopee Seller Centre</h4><p>Tài chính → Doanh thu → Xuất file Excel theo kỳ đối soát (T-7 đến T-1).</p></div></div><div class="step-card"><div class="step-num">2</div><div class="step-body"><h4>So sánh với sao kê ngân hàng</h4><p>Đối chiếu từng dòng giải ngân. Ghi chú chênh lệch nếu có.</p></div></div><div class="step-card"><div class="step-num">3</div><div class="step-body"><h4>Xử lý chênh lệch</h4><p>Dưới 50.000đ → ghi nhận điều chỉnh. Trên 50.000đ → báo quản lý &amp; liên hệ Shopee support.</p></div></div>` },
-    'bao-cao-thue': { title: 'Báo cáo thuế định kỳ', date: 'T3/2026', owner: 'Kế toán trưởng', body: `<h2>Lịch khai thuế</h2><table><tr><th>Loại thuế</th><th>Kỳ khai</th><th>Hạn nộp</th></tr><tr><td>Thuế GTGT (VAT)</td><td>Hàng quý</td><td>Ngày 30 tháng sau kỳ</td></tr><tr><td>Thuế TNCN</td><td>Hàng quý</td><td>Ngày 30 tháng sau kỳ</td></tr><tr><td>Thuế TNDN tạm tính</td><td>Hàng quý</td><td>Ngày 30 tháng sau kỳ</td></tr><tr><td>Quyết toán năm</td><td>Hàng năm</td><td>31/3 năm sau</td></tr></table><div class="note-box">ℹ️ <strong>NĐ 68/2026:</strong> Hộ kinh doanh TMĐT doanh thu &gt; 500 triệu/năm phải khai thuế quý riêng.</div>` }
-  },
-  cskh: {
-    label: '💬 CSKH',
-    'xu-ly-khieu-nai': { title: 'Xử lý khiếu nại đơn hàng', date: 'T3/2026', owner: 'Trưởng CSKH', body: `<h2>Quy trình xử lý</h2><div class="step-card"><div class="step-num">1</div><div class="step-body"><h4>Tiếp nhận khiếu nại</h4><p>Ghi nhận thông tin khách hàng, mã đơn hàng, lý do khiếu nại vào sheet theo dõi.</p></div></div><div class="step-card"><div class="step-num">2</div><div class="step-body"><h4>Xác minh thông tin</h4><p>Kiểm tra lịch sử đơn hàng trên Shopee Seller Centre. Chụp màn hình bằng chứng.</p></div></div><div class="step-card"><div class="step-num">3</div><div class="step-body"><h4>Phản hồi khách hàng</h4><p>Trong vòng 2 giờ làm việc. Nếu cần xử lý nội bộ → thông báo thời gian dự kiến.</p></div></div>` },
-    'hoan-tra': { title: 'Hoàn trả / đổi hàng', date: 'T3/2026', owner: 'Trưởng CSKH', body: `<h2>Điều kiện hoàn trả</h2><p>Điền nội dung SOP thực tế vào đây.</p>` },
-    'chat-tu-van': { title: 'Kịch bản chat tư vấn', date: 'T3/2026', owner: 'Trưởng CSKH', body: `<h2>Kịch bản mẫu</h2><p>Điền kịch bản chat thực tế vào đây.</p>` }
-  },
-  kho: {
-    label: '📦 Kho Vận',
-    'vao-ca': { title: 'SOP Vào ca & Check-in', date: 'Tháng 4/2026', owner: 'Quản lý Kho SG', body: `
-      <h2>Thông tin ca làm việc</h2>
-      <table><tr><th>Vị trí</th><th>Thời gian có mặt</th><th>Giờ có lương</th><th>Ghi chú</th></tr>
-      <tr><td>Quản lý / Nhặt hàng</td><td>Ca sáng: 06:55 | Ca chiều: 12:55 | Ca tối: 18:55</td><td>07:00–12:00 / 13:00–19:00 / 19:00–22:00 (QL 23:00)</td><td>Có mặt trước 5 phút. Ca tối chỉ khi có lịch tăng ca</td></tr>
-      <tr><td>Đóng gói</td><td>Ca sáng: 07:55 | Ca chiều: 13:55 | Ca tối: 19:55</td><td>07:00–12:00 / 13:00–19:00 / 19:00–22:00</td><td>Có mặt trước 5 phút</td></tr></table>
-      <h2>Bước 1 — Chấm công Check-in</h2>
-      <p>Thực hiện ngay khi có mặt tại kho — trước giờ ca bắt đầu 5 phút.</p>
-      <div class="step-card"><div class="step-num">1</div><div class="step-body"><h4>Mở app → Chấm công check-in</h4><p>Link chấm công: <strong>giadungplus.io.vn/hcns/chamcong/</strong></p></div></div>
-      <div class="step-card"><div class="step-num">2</div><div class="step-body"><h4>Chụp ảnh màn hình hiển thị giờ check-in</h4></div></div>
-      <div class="step-card"><div class="step-num">3</div><div class="step-body"><h4>Gửi ảnh vào group Zalo ca làm việc</h4></div></div>
-      <h2>Quy định chấm công</h2>
-      <table><tr><th>Tình huống</th><th>Xử lý</th></tr>
-      <tr><td>Chấm công đúng giờ</td><td>Tính đủ giờ làm</td></tr>
-      <tr><td>Chấm công trễ</td><td>Phạt 50k nếu muộn &gt;5p | Phạt 200k nếu muộn &gt;30p</td></tr>
-      <tr><td>Lỗi chấm công</td><td>Báo Admin ngay trong ca — Admin duyệt thủ công nếu hợp lý</td></tr>
-      <tr><td>Không chấm công</td><td>Không tính giờ = không tính lương, kể cả có mặt tại kho</td></tr>
-      <tr><td>Nhờ người chấm hộ</td><td>Phát hiện → XA THẢI ngay lập tức</td></tr></table>
-      <h2>Bước 2A — Dụng cụ cứng (trả cuối ca)</h2>
-      <table><tr><th>Dụng cụ</th><th>Số lượng</th><th>Kiểm tra khi nhận</th></tr>
-      <tr><td>Bàn cắt</td><td>1 cái/người</td><td>Bề mặt còn dùng được, không cong vênh</td></tr>
-      <tr><td>Cán dao rọc</td><td>1 cái/người</td><td>Cơ chế khóa lưỡi còn hoạt động</td></tr>
-      <tr><td>Máy bắn đơn</td><td>1 cái/bàn gói</td><td>Còn mực, kết nối được với hệ thống</td></tr></table>
-      <div class="warn-box">⚠️ Nhận dụng cụ hỏng → báo Admin đổi ngay, không dùng dụng cụ lỗi.</div>
-      <h2>Bước 2B — Vật liệu tiêu hao</h2>
-      <table><tr><th>Vật liệu</th><th>Số lượng nhận</th><th>Cách trả khi hết</th></tr>
-      <tr><td>Lưỡi dao rọc</td><td>1 hộp 10 cái/người</td><td>Trả lưỡi cũ → nhận lưỡi mới</td></tr>
-      <tr><td>Băng keo</td><td>1 cây 6 cuộn/người</td><td>Trả 6 lõi rỗng → nhận cuộn mới</td></tr>
-      <tr><td>Xốp nổ</td><td>1 cây 40 &amp; 1 cây 50/người</td><td>Khi hết sạch → trả lõi nhận cây mới</td></tr></table>
-      <div class="warn-box">⚠️ Không tự ý lấy thêm vật liệu — phải trả phần cũ cho Admin trước khi nhận mới.</div>
-      <h2>Quy tắc chọn size hộp — BẮT BUỘC</h2>
-      <div class="danger-box">⚠️ Quy tắc 70%: SP phải lấp đầy ít nhất 70% thể tích hộp. Còn trống nhiều → chọn hộp nhỏ hơn hoặc độn xốp nổ. Không dùng hộp lớn hơn cần thiết.</div>
-      <h2>Bước 3 — Kiểm tra khu vực làm việc</h2>
-      <table><tr><th>#</th><th>Hạng mục kiểm tra</th><th>Nếu chưa đạt</th></tr>
-      <tr><td>1</td><td>Bàn gói sạch — không còn đơn/hàng của ca trước</td><td>Dọn sạch trước khi bắt đầu</td></tr>
-      <tr><td>2</td><td>Không còn rác, carton cũ tại khu vực gói</td><td>Bỏ rác đúng nơi quy định</td></tr>
-      <tr><td>3</td><td>Vật liệu ca trước đã được trả về đúng chỗ</td><td>Trả về khu vực đúng</td></tr>
-      <tr><td>4</td><td>Màng PE tại bàn còn đủ dùng</td><td>Báo Admin bổ sung</td></tr></table>
-      <h2>Bước 4 — Nhận bàn giao từ Admin</h2>
-      <table><tr><th>Nội dung bàn giao</th><th>Chi tiết</th></tr>
-      <tr><td>Tổng số đơn cần xử lý trong ca</td><td>Admin thông báo con số cụ thể</td></tr>
-      <tr><td>Phân công nhóm hàng</td><td>Ai phụ trách nhóm nào (thuỷ tinh / kệ / móc nhỏ...)</td></tr>
-      <tr><td>Đơn tồn từ ca trước</td><td>Còn bao nhiêu đơn chưa gói, ưu tiên xử lý trước</td></tr>
-      <tr><td>Lưu ý đặc biệt</td><td>Đơn gấp, đơn hoàn cần xử lý, SP mới lần đầu gói</td></tr></table>
-      <h2>Flowchart Vào ca</h2>
-      <div class="flowchart">
-        <div class="flow-step"><div class="flow-icon">⏰</div><div class="flow-text">Có mặt trước 5 phút</div></div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step"><div class="flow-icon">📱</div><div class="flow-text">Chấm công + chụp ảnh + gửi Zalo</div></div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step"><div class="flow-icon">🔧</div><div class="flow-text">Nhận dụng cụ cứng + vật liệu tiêu hao từ Admin</div></div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step"><div class="flow-icon">📦</div><div class="flow-text">Tự lấy vật liệu đóng gói tại khu vực cố định</div></div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step"><div class="flow-icon">🧹</div><div class="flow-text">Kiểm tra &amp; dọn sạch khu vực làm việc</div></div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step"><div class="flow-icon">📋</div><div class="flow-text">Nhận bàn giao + phân công từ Admin</div></div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step"><div class="flow-icon">✅</div><div class="flow-text">SẴN SÀNG — Vào ca</div></div>
-      </div>
-    ` },
-    'trong-ca': { title: 'SOP Trong ca & Lịch trình Deadline', date: 'Tháng 4/2026', owner: 'Quản lý Kho SG', body: `
-      <h2>Deadline giao hàng Shopee</h2>
-      <table><tr><th>Loại đơn</th><th>Deadline bàn giao</th></tr>
-      <tr><td>Đơn phát sinh 00:00–17:59</td><td>Bàn giao trước <strong>21:00 cùng ngày</strong></td></tr>
-      <tr><td>Đơn phát sinh 18:00–23:59</td><td>Bàn giao trước <strong>11:00 sáng hôm sau</strong></td></tr>
-      <tr><td>Đơn phát sinh 00:00–14:00</td><td>Trước 23:59 cùng ngày</td></tr></table>
-      <h2>Lịch trình trong ca</h2>
-      <table><tr><th>Khung giờ</th><th>Nhiệm vụ</th><th>Nhân sự</th><th>Ghi chú</th></tr>
-      <tr><td><strong>07:00–08:00</strong></td><td>Kiểm tra đơn hạn ngày trước | Kiểm tra khu vực hàng đã in/nhặt/chưa gói | In &amp; nhặt đơn từ 18:00–23:59</td><td>QL / Nhặt hàng</td><td>Đảm bảo đơn đêm giao kịp 11:00</td></tr>
-      <tr><td><strong>08:00–09:00</strong></td><td>Tiếp tục nhặt đơn hạn trưa nay</td><td>Nhặt hàng</td><td></td></tr>
-      <tr><td><strong>08:00–09:00</strong></td><td>Gói theo thứ tự ưu tiên: (1) Đơn nhặt hôm qua chưa gói → (2) Hạn ngày trước → (3) Trong ngày → (4) Hạn trưa nay. Tuyệt đối không thay đổi thứ tự.</td><td>Gói hàng</td><td></td></tr>
-      <tr><td><strong>09:00–10:00</strong></td><td>Kiểm tra ticket + xử lý đơn SAPO (18h–00h) | In + Nhặt + Gói đơn SAPO</td><td>Quản lý</td><td></td></tr>
-      <tr><td><strong>10:00–11:00</strong></td><td>Kiểm tra đơn hạn ngày trước &amp; hạn trưa nay → Đảm bảo không còn sót | Khiếu nại nếu ĐVVC chưa đến lấy</td><td>QL + NH</td><td>Đơn tồn quá 11h ngày hôm sau → Phạt 50k/đơn</td></tr>
-      <tr><td><strong>11:00–12:00</strong></td><td>In &amp; nhặt đơn 00:00–18:00 (hạn tối nay) | Làm phiếu bàn giao ca</td><td>Nhặt hàng</td><td></td></tr>
-      <tr><td><strong>11:30–11:45</strong></td><td>Nếu ĐVVC chưa đến → Quay video đơn đã gói → Gửi Shopee khiếu nại</td><td>Quản lý</td><td></td></tr>
-      <tr><td><strong>12:00–13:00</strong></td><td>Nghỉ giữa ca</td><td>NH / AD</td><td></td></tr>
-      <tr><td><strong>13:00–14:00</strong></td><td>Nghỉ giữa ca</td><td>Gói hàng</td><td></td></tr>
-      <tr><td><strong>14:00–18:00</strong></td><td>Tập trung gói đơn hạn tối nay. Phát hiện sót đơn (4) → ưu tiên gói (4) trước</td><td>Gói hàng</td><td></td></tr>
-      <tr><td><strong>15:00–17:00</strong></td><td>Tổng hợp đơn hủy | Xử lý đơn hoàn | Trả hàng về kho kệ</td><td>Hậu cần / NH / QL</td><td></td></tr>
-      <tr><td><strong>16:00–18:00</strong></td><td>Kiểm tra đơn 00:00–14:00 → đảm bảo không sót | Bàn giao cho shipper trước 19:00</td><td>Nhặt hàng</td><td></td></tr>
-      <tr><td><strong>19:00–20:00</strong></td><td>Ca tối — chỉ ngày sale/cao điểm</td><td>Theo nhu cầu</td><td>Lương x1.5</td></tr>
-      <tr><td><strong>20:00–20:30</strong></td><td>Kiểm tra đơn còn lại, đem bưu cục trước 21:00</td><td></td><td></td></tr></table>
-      <h2>Nghỉ giải lao</h2>
-      <table><tr><th>Nhân sự</th><th>Giờ nghỉ</th></tr>
-      <tr><td>Quản lý + Nhặt hàng + Hậu cần</td><td>10:00–10:10 | 15:00–15:10</td></tr>
-      <tr><td>Gói hàng</td><td>11:00–11:10 | 16:00–16:10</td></tr></table>
-      <h2>Nguyên tắc xoay ca</h2>
-      <ul><li>Mỗi người nghỉ 1 ngày/tuần, không nghỉ cùng ngày nhau</li>
-      <li>Ngày sale đôi, 15, 25: bắt buộc có mặt, báo nghỉ trước 7 ngày</li>
-      <li>Đăng ký lịch trước 15h thứ Năm hằng tuần cho tuần sau</li>
-      <li>Không có ca = không check in = không tính lương</li>
-      <li>Parttime bị cắt ca đầu tiên khi ít đơn — fulltime được ưu tiên giữ ca</li></ul>
-    ` },
-    'nhat-hang': { title: 'SOP Nhặt hàng theo Batch', date: 'Tháng 4/2026', owner: 'Nhặt hàng / Hậu cần', body: `
-      <h2>Dụng cụ vận chuyển</h2>
-      <table><tr><th>Loại xe</th><th>Cấu tạo</th><th>Dùng cho nhóm hàng</th></tr>
-      <tr><td>Xe đẩy loại 1</td><td>3 tầng x 5 khay = 15 khay/chuyến</td><td>Thuỷ tinh, móc nhỏ, phụ kiện — hàng nhỏ cần phân chia theo đơn</td></tr>
-      <tr><td>Xe đẩy loại 2</td><td>3 tầng không khay</td><td>Kệ sắt, thùng rác lớn, tấm chắn dầu — hàng cồng kềnh</td></tr></table>
-      <h2>Bước 1 — Nhận batch &amp; đọc đơn trước khi nhặt</h2>
-      <div class="step-card"><div class="step-num">1</div><div class="step-body"><h4>Nhận batch đơn từ khu vực đơn đã tách</h4></div></div>
-      <div class="step-card"><div class="step-num">2</div><div class="step-body"><h4>Đọc lướt toàn bộ đơn trong batch trước khi di chuyển</h4></div></div>
-      <div class="step-card"><div class="step-num">3</div><div class="step-body"><h4>Ước lượng tổng số lượng từng loại SP cần lấy</h4></div></div>
-      <div class="step-card"><div class="step-num">4</div><div class="step-body"><h4>Chọn xe đẩy phù hợp với nhóm hàng trong batch</h4></div></div>
-      <div class="warn-box">⚠️ Không cầm đơn đi nhặt ngay mà chưa đọc — dễ đi lại nhiều lần, mất thời gian và giảm hiệu suất.</div>
-      <h2>Bước 2 — Xác định vị trí hàng trong kho</h2>
-      <table><tr><th>Tình huống</th><th>Xử lý</th></tr>
-      <tr><td>NV cũ — biết vị trí</td><td>Đi thẳng đến khu vực hàng</td></tr>
-      <tr><td>NV mới — chưa biết vị trí</td><td>Hỏi NV cũ hoặc Admin trước khi nhặt — không tự tìm lâu quá 2 phút</td></tr>
-      <tr><td>Hàng không thấy ở vị trí quen</td><td>Hỏi Admin ngay — không tự giả định hàng ở chỗ khác</td></tr></table>
-      <h2>Bước 3 — Nguyên tắc nhặt</h2>
-      <ul><li>Xử lý dứt điểm 1 batch trước khi chuyển sang batch khác</li>
-      <li>Nhặt theo từng đơn — đọc tên SP → lấy đúng → đặt vào khay/tầng xe riêng theo đơn</li>
-      <li>Không gom nhiều đơn chung 1 khay khi chưa phân biệt rõ ràng</li></ul>
-      <h3>Phân tầng xe đẩy loại 1 (có khay)</h3>
-      <table><tr><th>Tầng</th><th>Vị trí</th><th>Dùng cho</th></tr>
-      <tr><td>Tầng 1</td><td>Trên cùng</td><td>Đơn đang nhặt — hàng vừa lấy</td></tr>
-      <tr><td>Tầng 2</td><td>Giữa</td><td>Đơn đã nhặt xong chờ kiểm tra</td></tr>
-      <tr><td>Tầng 3</td><td>Dưới cùng</td><td>Đơn đã kiểm tra — sẵn sàng đưa về bàn gói</td></tr></table>
-      <h2>Bước 4 — Kiểm tra SP ngay tại khu vực hàng</h2>
-      <table><tr><th>#</th><th>Kiểm tra</th><th>Yêu cầu</th><th>Nếu không đạt</th></tr>
-      <tr><td>1</td><td>Đúng tên SP</td><td>Khớp chính xác với tên trên đơn</td><td>Đặt lại, lấy đúng SP</td></tr>
-      <tr><td>2</td><td>Đúng số lượng</td><td>Đếm lại trước khi rời khu vực hàng</td><td>Lấy bổ sung trước khi đi</td></tr>
-      <tr><td>3</td><td>Tình trạng SP</td><td>Không vỡ, không móp, không hỏng hộp</td><td>Báo Admin — xem Bước 6</td></tr>
-      <tr><td>4</td><td>Phụ kiện đi kèm</td><td>Đủ ốc vít, móc, nắp, thanh ngang...</td><td>Tìm trong khu vực xử lý đơn hoàn. Nếu không có → báo Admin</td></tr></table>
-      <h2>Bước 5 — Báo cáo tồn kho gần hết</h2>
-      <table><tr><th>Loại hàng</th><th>Ngưỡng cần báo</th></tr>
-      <tr><td>Thuỷ tinh (bình, ly, lọ)</td><td>Còn ≤ 10 cái</td></tr>
-      <tr><td>Kệ sắt / Thanh móc</td><td>Còn ≤ 5 bộ</td></tr>
-      <tr><td>Móc nhỏ / Phụ kiện</td><td>Còn ≤ 20 cái</td></tr>
-      <tr><td>Các loại khác</td><td>Còn ≤ 5 cái</td></tr></table>
-      <div class="note-box">📱 Mẫu Zalo: <strong>"[Tên SP] — còn khoảng [số lượng] — [khu vực trong kho]"</strong><br>Ví dụ: "Bình nước 1L Phaledo — còn khoảng 8 cái — kệ A tầng 2"</div>
-      <h2>Bước 6 — Xử lý SP hỏng / thiếu phụ kiện</h2>
-      <table><tr><th>Tình huống</th><th>Xử lý ngay</th></tr>
-      <tr><td>SP vỡ / móp / hỏng hộp</td><td>Đặt riêng sang khu vực hàng lỗi + nhắn Admin ngay + ghi tên SP + số lượng</td></tr>
-      <tr><td>Thiếu phụ kiện đi kèm</td><td>Tìm trong khu vực hàng trước — nếu không có → báo Admin, không tự gói thiếu</td></tr>
-      <tr><td>SP hết hàng đột ngột</td><td>Báo Admin ngay — đơn đó giữ lại chờ, nhặt batch khác trước</td></tr>
-      <tr><td>Không tìm thấy SP</td><td>Hỏi Admin — không tự giả định hàng hết hoặc ở chỗ khác</td></tr></table>
-      <div class="danger-box">⚠️ Tuyệt đối không tự ý gói SP thay thế hoặc gói thiếu — mọi trường hợp bất thường đều phải báo Admin trước khi xử lý.</div>
-    ` },
-    'ban-giao-goi': { title: 'SOP Bàn giao sang NV Gói', date: 'Tháng 4/2026', owner: 'Nhặt hàng → NV Gói', body: `
-      <h2>Phân loại đơn theo độ ưu tiên</h2>
-      <p>Thực hiện ngay sau khi nhặt xong batch — TRƯỚC khi đặt lên bàn gói.</p>
-      <div class="priority-red">🔴 <strong>Ưu tiên 1</strong> — Đơn giao trước 12h | Đơn giao trước 24h | Đơn tồn từ ca trước → Đặt trong khay ĐỎ bàn gói</div>
-      <div class="priority-yellow">🟡 <strong>Ưu tiên 2</strong> — Đơn thường trong ca, phát sinh trước 14h → Đặt trong khay VÀNG bàn gói</div>
-      <div class="priority-green">🟢 <strong>Ưu tiên 3</strong> — Đơn phát sinh sau 14h, còn nhiều thời gian → Đặt trong khay XANH bàn gói</div>
-      <div class="warn-box">⚠️ NV gói phải lấy đơn theo thứ tự ĐỎ → VÀNG → XANH — không tự ý chọn đơn theo ý thích.</div>
-      <h2>Yêu cầu đặt hàng lên bàn gói</h2>
-      <table><tr><th>#</th><th>Yêu cầu</th><th>Lý do</th></tr>
-      <tr><td>1</td><td>Mỗi đơn là 1 cụm riêng — SP + đơn in đặt trồng lên nhau</td><td>Tránh nhầm SP giữa các đơn</td></tr>
-      <tr><td>2</td><td>Đơn in úp xuống, mặt có chữ quay lên — dễ đọc ngay</td><td>Tiết kiệm thời gian NV gói</td></tr>
-      <tr><td>3</td><td>Đặt đúng khu ưu tiên (trái / giữa / phải)</td><td>Đảm bảo thứ tự gói đúng</td></tr>
-      <tr><td>4</td><td>Không chồng SP của đơn này lên đơn khác</td><td>Tránh nhầm, tránh vỡ hàng</td></tr>
-      <tr><td>5</td><td>Hàng nặng/dễ vỡ đặt ở vị trí ổn định — không chồng chất</td><td>Tránh vỡ trước khi gói</td></tr></table>
-      <h2>Thông báo NV Gói</h2>
-      <div class="note-box">📢 Mẫu thông báo: <strong>"Batch [tên nhóm] xong — có [số đơn] đơn, [số đơn đỏ] đơn đỏ cần làm trước"</strong></div>
-      <div class="success-box">✅ Nhặt hàng không cần chờ — thông báo xong đi nhặt tiếp ngay.</div>
-      <h2>NV Gói kiểm tra 5 điểm trước khi gói</h2>
-      <table><tr><th>#</th><th>Kiểm tra</th><th>Yêu cầu</th></tr>
-      <tr><td>1</td><td>Đúng SP</td><td>Tên SP khớp với đơn in</td></tr>
-      <tr><td>2</td><td>Đủ số lượng</td><td>Đếm lại từng món</td></tr>
-      <tr><td>3</td><td>Thank card</td><td>Đúng thương hiệu, đã có sẵn</td></tr>
-      <tr><td>4</td><td>Tình trạng SP</td><td>Không vỡ, không móp, không hỏng</td></tr></table>
-      <h2>Xử lý khi phát hiện thiếu / sai SP</h2>
-      <table><tr><th>Tình huống</th><th>Xử lý ngay</th><th>Thời gian tối đa</th></tr>
-      <tr><td>Thiếu SP</td><td>Nhắn Zalo: "Bàn [số] — thiếu [tên SP] [số lượng]" + Ảnh đơn</td><td>Trong vòng 1 phút</td></tr>
-      <tr><td>Sai SP</td><td>Nhắn Zalo như trên + để SP sai sang 1 bên có ghi chú</td><td>Trong vòng 1 phút</td></tr>
-      <tr><td>SP hỏng</td><td>Nhắn Zalo + để SP hỏng sang khu vực hàng lỗi</td><td>Trong vòng 1 phút</td></tr></table>
-      <div class="danger-box">⚠️ Không được gói đơn thiếu SP rồi dán đơn — dù đơn đó có ưu tiên cao đến đâu.</div>
-    ` },
-    'dong-goi': { title: 'SOP Quy cách đóng gói', date: 'Tháng 4/2026', owner: 'NV Gói', body: `
-      <h2>Nguyên tắc chung — 3 bước TRƯỚC khi gói bất kỳ đơn nào</h2>
-      <table><tr><th>Bước</th><th>Hành động</th><th>Mục đích</th></tr>
-      <tr><td>1</td><td>Bắn đơn — xác nhận đơn chưa gói trên hệ thống</td><td>Tránh gói trùng, gói sai đơn</td></tr>
-      <tr><td>2</td><td>Kiểm tra số lượng SP — đọc đơn, đếm từng sản phẩm thực tế</td><td>Tránh thiếu hàng</td></tr>
-      <tr><td>3</td><td>Xác định thank card — nhìn logo thương hiệu trên đơn, lấy đúng thank card</td><td>Tránh thiếu/nhầm thank card</td></tr></table>
-      <div class="danger-box">⚠️ Không được bắt đầu gói nếu chưa hoàn thành đủ 3 bước trên.</div>
-      <h2>Nhóm 1 — Hàng Thuỷ Tinh</h2>
-      <p>Bình nước, ly nước, lọ đựng đa năng 6.5–25cm | Ưu tiên kiểm soát — lỗi vỡ tập trung nhiều nhất ở nhóm này</p>
-      <table><tr><th>Bước</th><th>Tên bước</th><th>Chi tiết thực hiện</th></tr>
-      <tr><td>B1</td><td>Bắn đơn &amp; kiểm tra</td><td>Bắn đơn → xác nhận chưa gói | Đọc đơn → đếm đủ SP | Lấy đúng thank card theo logo thương hiệu</td></tr>
-      <tr><td>B2</td><td>Gia cố bên trong SP</td><td>Nhét xốp nổ vào bên trong miệng bình/lọ nếu rỗng → chống rung, tránh vỡ từ bên trong khi va đập</td></tr>
-      <tr><td>B3</td><td>Tạo hộp từ bìa carton cứng</td><td>Cắt/gấp bìa carton cứng vừa kích thước SP | Bỏ thank card vào trước | Đặt SP vào — không để di chuyển được bên trong</td></tr>
-      <tr><td>B4</td><td>Cố định hộp</td><td>Gấp kín hộp carton | Dán băng keo 3 đường: 1 đường giữa + 2 đường 2 cạnh bên</td></tr>
-      <tr><td>B5</td><td>Quấn xốp nổ bên ngoài</td><td>Quấn xốp nổ tối thiểu 2 vòng quanh hộp | Đảm bảo không có góc nào hở | Dán băng keo cố định</td></tr>
-      <tr><td>B6</td><td>Dán đơn</td><td>Dán mặt phẳng nhất | Đơn phải thẳng, không nhăn, không bị che khuất</td></tr></table>
-      <h3>Tiêu chuẩn kiểm tra trước khi thả vào thùng:</h3>
-      <ul><li>✅ Lắc nhẹ — không nghe tiếng động bên trong</li>
-      <li>✅ Bóp nhẹ 4 góc — hộp không xẹp</li>
-      <li>✅ Đơn hiển thị rõ tên + địa chỉ người nhận</li>
-      <li>✅ Thank card có trong hộp</li></ul>
-      <h2>Nhóm 2 — Kệ Sắt/Nhôm + Thùng Rác Nhỏ + Thanh Móc + Khay Trà</h2>
-      <table><tr><th>Bước</th><th>Tên bước</th><th>Chi tiết thực hiện</th></tr>
-      <tr><td>B1</td><td>Bắn đơn &amp; kiểm tra</td><td>Bắn đơn → xác nhận chưa gói | Kiểm tra đủ SP + phụ kiện (ốc vít, thanh ngang, móc...) | Lấy đúng thank card</td></tr>
-      <tr><td>B2</td><td>Bỏ thank card</td><td>Đặt thank card vào bên trong SP hoặc kẹp vào giữa các thanh kệ</td></tr>
-      <tr><td>B3</td><td>Tạo hộp từ bìa mỏng</td><td>Gấp bìa mỏng bao quanh SP vừa khít | Không để SP lỏng lẻo bên trong</td></tr>
-      <tr><td>B4</td><td>Cố định hộp bìa</td><td>Dán băng keo — tối thiểu 3 đường | Đảm bảo không bung khi shipper cầm hoặc xếp chồng</td></tr>
-      <tr><td>B5</td><td>Dán đơn</td><td>Dán mặt phẳng, thẳng, rõ ràng</td></tr></table>
-      <h2>Nhóm 3 — Thùng Rác Lớn + Tấm Chắn Dầu</h2>
-      <table><tr><th>Bước</th><th>Tên bước</th><th>Chi tiết thực hiện</th></tr>
-      <tr><td>B1</td><td>Bắn đơn &amp; kiểm tra</td><td>Bắn đơn → xác nhận chưa gói | Kiểm tra số lượng + tình trạng SP | Lấy đúng thank card</td></tr>
-      <tr><td>B2</td><td>Bỏ thank card</td><td>Kẹp thank card vào bên trong hoặc dán ngoài bằng băng keo trong suốt</td></tr>
-      <tr><td>B3</td><td>Quấn màng PE</td><td>Quấn màng PE tối thiểu 3 vòng quanh SP | Đảm bảo không hở góc, không lộ SP ra ngoài</td></tr>
-      <tr><td>B4</td><td>Cố định bằng băng keo</td><td>Dán băng keo cố định màng PE — tối thiểu 3 đường</td></tr>
-      <tr><td>B5</td><td>Dán đơn</td><td>Dán mặt phẳng nhất | Đảm bảo đơn không bị che bởi băng keo</td></tr></table>
-      <h2>Nhóm 4 — Móc Nhỏ / Phụ Kiện</h2>
-      <table><tr><th>Bước</th><th>Tên bước</th><th>Chi tiết thực hiện</th></tr>
-      <tr><td>B1</td><td>Bắn đơn &amp; kiểm tra</td><td>Bắn đơn | Đếm kỹ từng món — nhóm này dễ thiếu nhất | Lấy đúng thank card</td></tr>
-      <tr><td>B2</td><td>Bỏ thank card</td><td>Đặt thank card vào trong hộp trước</td></tr>
-      <tr><td>B3</td><td>Tạo hộp</td><td>Dùng bìa mỏng hoặc hộp mini size vừa với SP | Không dùng hộp quá lớn</td></tr>
-      <tr><td>B4</td><td>Cố định</td><td>Dán băng keo kín tất cả các mặt hở | Không để hộp bung mở khi vận chuyển</td></tr>
-      <tr><td>B5</td><td>Dán đơn</td><td>Dán thẳng, rõ ràng</td></tr></table>
-      <h2>Bảng Thank Card theo Thương Hiệu</h2>
-      <table><tr><th>Logo thương hiệu trên đơn</th><th>Thank card tương ứng</th></tr>
-      <tr><td>PHALEDO</td><td>Thank card PHALEDO</td></tr>
-      <tr><td>GIADUNGPLUS</td><td>Thank card GIADUNGPLUS</td></tr>
-      <tr><td>LTENG</td><td>Thank card LTENG</td></tr></table>
-      <div class="danger-box">⚠️ Không có thank card = lỗi gói. Nhầm thank card = lỗi gói. Cả 2 trường hợp đều bị ghi nhận lỗi trong tháng.</div>
-      <h2>Bảng lỗi &amp; hệ quả</h2>
-      <table><tr><th>Mức độ</th><th>Loại lỗi</th><th>Hệ quả</th></tr>
-      <tr><td>🔴 Nghiêm trọng</td><td>Thiếu sản phẩm trong đơn</td><td>Ghi nhận lỗi + trừ thưởng hiệu suất tháng đó</td></tr>
-      <tr><td>🔴 Nghiêm trọng</td><td>Giao sai sản phẩm</td><td>Ghi nhận lỗi + trừ thưởng hiệu suất tháng đó</td></tr>
-      <tr><td>🔴 Nghiêm trọng</td><td>Hàng vỡ do gói ẩu (có bằng chứng)</td><td>Ghi nhận lỗi + trừ thưởng hiệu suất tháng đó</td></tr>
-      <tr><td>🟡 Trung bình</td><td>Thiếu/nhầm thank card</td><td>Cảnh báo lần 1, trừ thưởng từ lần 2</td></tr>
-      <tr><td>🟡 Trung bình</td><td>Đơn dán lệch/nhăn/khó đọc</td><td>Nhắc nhở</td></tr>
-      <tr><td>🟡 Trung bình</td><td>Gói sơ sài, dễ bung</td><td>Gói lại ngay, ghi nhận</td></tr></table>
-      <div class="warn-box">⚠️ Lỗi &gt; 3 lần/tháng → không nhận thưởng chuyên cần &amp; thưởng hiệu suất team tháng đó.</div>
-    ` }
-  },
-  'quy-dinh': { title: 'Quy định nội bộ Kho SG', date: 'Tháng 4/2026', owner: 'Quản lý Kho SG', body: `
-      <h2>Áp dụng từ tháng 4/2026 — Bắt buộc thực hiện đúng 100%</h2>
-
-      <h2>Điều 1 — Đăng ký &amp; theo dõi lịch làm việc</h2>
-      <p>Đăng ký lịch vào trước 15h T5 hằng tuần cho từ T2–CN tuần sau tại sheet: <strong>GDP_Lịch làm_Kho SG_2026</strong>. Nhận lịch làm việc vào trước 23h T6 hằng tuần.</p>
-      <table><tr><th>Tình huống</th><th>Quy chế</th></tr>
-      <tr><td>Có lịch làm nhưng muốn nghỉ</td><td>Phải tìm người làm thay ca | Phải báo trước 24h</td></tr>
-      <tr><td>Đăng ký lịch nhưng không làm</td><td>Phạt <strong>-200k</strong> vào lương trong tháng</td></tr>
-      <tr><td>Ngày sale 15, 25, sale đôi hằng tháng</td><td>Lịch bắt buộc — không được từ chối</td></tr></table>
-
-      <h2>Điều 2 — Chấm công đúng và đủ</h2>
-      <p>Check in check out đầy đủ kể cả nghỉ trưa tại phần mềm. Phần mềm lỗi → check in bằng group Zalo (ảnh thấy mặt + khu vực kho, ghi Ngày + Tên + Giờ làm). Tự tổng hợp công lương và báo lại ADMIN vào ngày 31 hằng tháng.</p>
-      <table><tr><th>Quy định</th><th>Hệ quả</th></tr>
-      <tr><td>Không có ca — không check in</td><td>Check in không duyệt — không tính lương</td></tr>
-      <tr><td>Quên chấm công</td><td>Không chấm bù — chỉ chấm bù cuối ca/ngày với lỗi hệ thống</td></tr></table>
-
-      <h2>Điều 3 — Nhận &amp; trả bộ dụng cụ</h2>
-      <ul><li><strong>Check in:</strong> Kiểm tra khi nhận — đảm bảo không thiếu vật dụng, không cần đi lại trong ca làm</li>
-      <li><strong>Check out:</strong> Trả lại đúng các vật dụng đã nhận vào đầu ca. Trả phần lõi nếu sử dụng hết</li></ul>
-      <table><tr><th>Vi phạm</th><th>Mức phạt</th></tr>
-      <tr><td>Mất 1 món — Lần 1</td><td>Phạt 50k/lần</td></tr>
-      <tr><td>Mất 1 món — Lần 2</td><td>Phạt 100k/lần</td></tr>
-      <tr><td>Mất 1 món — Các lần sau</td><td>Phạt 200k/lần</td></tr></table>
-      <div class="note-box">ℹ️ Tiền phạt nạp vào quỹ mua lại vật dụng đã mất. Đóng phạt ngay hoặc x2 và trừ trong lương tháng.</div>
-
-      <h2>Điều 4 — Tiết kiệm đúng cách</h2>
-      <ul><li>Tiết kiệm vật dụng, sử dụng hết mới đổi cái mới</li>
-      <li>Tận dụng bìa, hộp, bóng khí cũ còn sử dụng được</li>
-      <li>Tắt đèn điện khi không có người qua lại | Tiết kiệm nước, tắt nước khi không ai theo dõi</li></ul>
-      <div class="warn-box">⚠️ Phạt 300k/lần — phát hiện người mở mà không tắt điện/nước. Các khoản tiết kiệm được sẽ bán phế liệu → toàn bộ vào quỹ thưởng/giải trí của team.</div>
-
-      <h2>Điều 5 — Không hút thuốc</h2>
-      <ul><li>Không hút thuốc trong khu vực kho hàng, khu vực có bìa giấy, hàng hoá, xe máy</li>
-      <li>Chỉ được hút thuốc tại khu vực được chỉ định: ngoài đường hoặc khu vực uống nước (không có bìa/hàng hoá)</li></ul>
-      <table><tr><th>Vi phạm</th><th>Hình thức xử lý</th></tr>
-      <tr><td>Lần 1</td><td>Phạt 500k — đóng phạt ngay</td></tr>
-      <tr><td>Lần 2</td><td>1/2 tháng lương</td></tr>
-      <tr><td>Lần 3</td><td>XA THẢI</td></tr></table>
-      <div class="danger-box">⚠️ Các vấn đề về cháy nổ sẽ do người vi phạm chịu toàn bộ trách nhiệm và đền bù.</div>
-
-      <h2>Điều 6 — Không cởi áo trong giờ làm</h2>
-      <p>Không cởi áo trong tất cả các khu vực: sân ngoài, sân trong, KV đóng gói, KV nhặt hàng, KV xử lý đơn.</p>
-      <div class="warn-box">⚠️ Phạt 50k/lần — đóng phạt ngay hoặc x2 và trừ trong lương tháng.</div>
-
-      <h2>Điều 7 — Vệ sinh sạch sẽ</h2>
-      <ul><li>Trả vật dụng đóng gói còn dư cuối ngày về đúng vị trí ADMIN quy định</li>
-      <li>Dọn rác trước khi check out | Để đồ cá nhân đúng vị trí quy định</li>
-      <li>Ăn xong, uống xong dọn dẹp ngay | Phòng ở gọn gàng, sạch sẽ | Giữ vệ sinh WC</li>
-      <li>Tham gia lịch trực theo phân công hằng tuần/tháng — trốn tránh → xa thải</li></ul>
-      <div class="warn-box">⚠️ Phạt 50k/lần/người. Không quy trách nhiệm được → phạt toàn team 50k/người/1 lỗi.</div>
-
-      <h2>Điều 8 — Không cho người lạ vào kho</h2>
-      <p>Các đối tượng phải xin phép trước hoặc chỉ vào khu vực quy định: bạn bè/người thân, shipper (chỉ khu vực lấy hàng), người thu mua ve chai, người bán gánh, hàng xóm.</p>
-      <div class="warn-box">⚠️ Phạt 50k/lần sai phạm. Chịu trách nhiệm và đền bù đối với bất kỳ nguyên nhân nào do người được dẫn vào gây ra.</div>
-
-      <h2>Điều 9 — Không có ca làm không vào khu vực làm việc</h2>
-      <p>Không có ca, không vào khu vực làm việc để bấm điện thoại, tám chuyện hoặc gây mất tập trung. Trừ trường hợp muốn tìm thêm việc để làm.</p>
-      <div class="warn-box">⚠️ Phạt 50k/lần vi phạm.</div>
-
-      <h2>Điều 10 — Có trách nhiệm với từng món hàng</h2>
-      <ul><li>Hàng không để đúng vị trí (đơn huỷ/hoàn/gói trùng/dư/SP chưa trả kệ) → hỏi AD vị trí và trả về đúng chỗ</li>
-      <li>Không để đơn hàng có cơ hội hư hỏng</li>
-      <li>Không có hành vi chọi/ném/liện/dẫm lên đơn hàng/sản phẩm</li></ul>
-      <table><tr><th>Vi phạm</th><th>Mức phạt</th></tr>
-      <tr><td>Hàng hoá không để đúng nơi quy định</td><td>Phạt 5k/bạn (toàn team)</td></tr>
-      <tr><td>Admin phát hiện khi kiểm tra đột xuất</td><td>Phạt AD 50k</td></tr>
-      <tr><td>Hành vi dẫm đạp/đá/ném/chọi/liện đơn</td><td>Phạt 100k/lần/người</td></tr>
-      <tr><td>Đơn hàng hư hỏng 1 phần/toàn bộ</td><td>Phạt 100% giá trị đơn hàng (xem như mua lại)</td></tr></table>
-    ` }
-  },
-  'quy-dinh': { title: 'Quy định nội bộ Kho SG', date: 'Tháng 4/2026', owner: 'Quản lý Kho SG', body: `<h2>Áp dụng từ T4/2026 — Bắt buộc thực hiện đúng 100%</h2><h2>Điều 1 — Đăng ký &amp; theo dõi lịch làm việc</h2><p>Đăng ký lịch vào trước 15h T5 hằng tuần cho từ T2–CN tuần sau tại sheet: <strong>GDP_Lịch làm_Kho SG_2026</strong>. Nhận lịch trước 23h T6 hằng tuần.</p><table><tr><th>Tình huống</th><th>Quy chế</th></tr><tr><td>Có lịch nhưng muốn nghỉ</td><td>Phải tìm người làm thay ca | Báo trước 24h</td></tr><tr><td>Đăng ký lịch nhưng không làm</td><td>Phạt -200k vào lương tháng</td></tr><tr><td>Ngày sale 15, 25, sale đôi</td><td>Lịch bắt buộc — không được từ chối</td></tr></table><h2>Điều 2 — Chấm công đúng và đủ</h2><p>Check in check out đầy đủ kể cả nghỉ trưa. Phần mềm lỗi → check in bằng group Zalo (ảnh mặt + khu vực kho + Ngày/Tên/Giờ). Tự tổng hợp công lương báo ADMIN ngày 31 hằng tháng.</p><table><tr><th>Quy định</th><th>Hệ quả</th></tr><tr><td>Không có ca — không check in</td><td>Không tính lương</td></tr><tr><td>Quên chấm công</td><td>Không chấm bù — chỉ chấm bù với lỗi hệ thống</td></tr></table><h2>Điều 3 — Nhận &amp; trả bộ dụng cụ</h2><ul><li>Check in: Kiểm tra khi nhận — không thiếu vật dụng, không cần đi lại trong ca</li><li>Check out: Trả lại đúng các vật dụng đã nhận. Trả phần lõi nếu sử dụng hết</li></ul><table><tr><th>Vi phạm</th><th>Mức phạt</th></tr><tr><td>Mất 1 món — Lần 1</td><td>50k/lần</td></tr><tr><td>Mất 1 món — Lần 2</td><td>100k/lần</td></tr><tr><td>Mất 1 món — Các lần sau</td><td>200k/lần</td></tr></table><div class="note-box">ℹ️ Đóng phạt ngay hoặc x2 mức phạt và trừ trong lương tháng.</div><h2>Điều 4 — Tiết kiệm đúng cách</h2><ul><li>Tiết kiệm vật dụng, sử dụng hết mới đổi | Tận dụng bìa, hộp, bóng khí cũ</li><li>Tắt đèn điện khi không có người | Tiết kiệm nước, tắt khi không ai theo dõi</li></ul><div class="warn-box">⚠️ Phạt 300k/lần — phát hiện người mở mà không tắt điện/nước. Khoản tiết kiệm được bán phế liệu → vào quỹ thưởng/giải trí team.</div><h2>Điều 5 — Không hút thuốc</h2><ul><li>Không hút thuốc trong kho, khu vực có bìa giấy, hàng hoá, xe máy</li><li>Chỉ được hút tại khu vực chỉ định: ngoài đường hoặc khu vực uống nước không có hàng/bìa</li></ul><table><tr><th>Vi phạm</th><th>Xử lý</th></tr><tr><td>Lần 1</td><td>Phạt 500k — đóng ngay</td></tr><tr><td>Lần 2</td><td>1/2 tháng lương</td></tr><tr><td>Lần 3</td><td>XA THẢI</td></tr></table><div class="danger-box">⚠️ Cháy nổ do vi phạm → người vi phạm chịu toàn bộ trách nhiệm và đền bù.</div><h2>Điều 6 — Không cởi áo trong giờ làm</h2><p>Không cởi áo trong tất cả khu vực: sân ngoài, sân trong, KV đóng gói, KV nhặt hàng, KV xử lý đơn.</p><div class="warn-box">⚠️ Phạt 50k/lần — đóng phạt ngay hoặc x2 và trừ trong lương tháng.</div><h2>Điều 7 — Vệ sinh sạch sẽ</h2><ul><li>Trả vật dụng đóng gói còn dư cuối ngày về đúng vị trí ADMIN quy định</li><li>Dọn rác trước khi check out | Đồ cá nhân đúng vị trí | Ăn xong dọn dẹp ngay</li><li>Phòng ở gọn gàng | Giữ vệ sinh WC | Tham gia lịch trực theo phân công — trốn tránh → xa thải</li></ul><div class="warn-box">⚠️ Phạt 50k/lần/người. Không quy trách nhiệm được → phạt toàn team 50k/người/1 lỗi.</div><h2>Điều 8 — Không cho người lạ vào kho</h2><p>Bạn bè/người thân phải xin phép trước. Shipper chỉ vào khu vực lấy hàng. Người thu mua ve chai, người bán gánh, hàng xóm theo quy định.</p><div class="warn-box">⚠️ Phạt 50k/lần sai phạm. Chịu trách nhiệm đền bù với mọi nguyên nhân do người được dẫn vào gây ra.</div><h2>Điều 9 — Không có ca làm không vào khu vực làm việc</h2><p>Không vào khu vực làm việc để bấm điện thoại, tám chuyện hoặc gây mất tập trung. Trừ trường hợp muốn tìm thêm việc.</p><div class="warn-box">⚠️ Phạt 50k/lần vi phạm.</div><h2>Điều 10 — Có trách nhiệm với từng món hàng</h2><ul><li>Hàng không đúng vị trí → hỏi AD và trả về đúng chỗ</li><li>Không để đơn hàng có cơ hội hư hỏng</li><li>Không có hành vi chọi/ném/liện/dẫm lên đơn hàng/sản phẩm</li></ul><table><tr><th>Vi phạm</th><th>Mức phạt</th></tr><tr><td>Hàng không để đúng nơi quy định</td><td>Phạt 5k/bạn (toàn team)</td></tr><tr><td>Admin phát hiện khi kiểm tra đột xuất</td><td>Phạt AD 50k</td></tr><tr><td>Hành vi dẫm đạp/đá/ném/chọi/liện đơn</td><td>Phạt 100k/lần/người</td></tr><tr><td>Đơn hàng hư hỏng 1 phần/toàn bộ</td><td>Phạt 100% giá trị đơn hàng</td></tr></table>` },
-  'don-sos': { title: 'Quy trình xử lý Đơn SOS đầu ca', date: 'Tháng 4/2026', owner: 'Quản lý / Đóng gói / Nhặt hàng', body: `
-    <div class="sos-wrap">
-      <div style="text-align:center;margin-bottom:24px;">
-        <div class="sos-badge">SOP Kho — Check-in Đầu Ca</div>
-        <div class="sos-h1">Quy Trình Xử Lý <span>Đơn SOS</span></div>
-        <div class="sos-sub-title">Bước đầu tiên khi vào ca · Đóng gói &amp; Nhặt hàng</div>
-      </div>
-      <div class="sos-flow">
-        <div class="sos-node sos-start">🕐 BẮT ĐẦU CA</div>
-        <div class="sos-arr o"></div>
-        <div class="sos-node sos-action"><span class="sos-step">1</span> Vào kiểm tra <strong>Đơn hàng SOS</strong> → Lọc <strong>Hạn gửi: Ngày hôm trước</strong></div>
-        <div class="sos-arr"></div>
-        <div class="sos-node sos-decision"><div class="sos-label">⚡ Kiểm tra trạng thái</div>Có đơn nào ở trạng thái <strong>"Đã in chưa gói"</strong> hoặc <strong>"Chưa xử lý"</strong> không?</div>
-        <div class="sos-arr"></div>
-        <div class="sos-branch">
-          <div class="sos-col">
-            <div class="sos-blabel c1">🔶 Trạng thái 1: Đã in chưa gói</div>
-            <div class="sos-arr"></div>
-            <div class="sos-node sos-decision"><div class="sos-label">❓ Hỏi: Đơn đã được nhặt chưa?</div>Kiểm tra khu vực nhặt hàng</div>
-            <div class="sos-arr"></div>
-            <div class="sos-sub">
-              <div class="sos-col">
-                <div class="sos-blabel yes">✅ Nhặt rồi</div>
-                <div class="sos-arr"></div>
-                <div class="sos-node sos-case"><div class="sos-label">TH1 — Đã nhặt</div>Đơn đang ở đâu? Còn đơn nào chưa nhặt / không có trong khu vực nhặt?</div>
-                <div class="sos-arr"></div>
-                <div class="sos-node sos-resolve"><div class="sos-label">✅ Hướng xử lý</div><ul><li>Giao <strong>1 bạn GH duy nhất</strong> xử lý toàn bộ đơn cũ ngày hôm trước</li><li>Follow đến khi <strong>done</strong> mới giao tiếp hàng đợt mới</li><li>Nếu đã gói xong nhưng phát hiện sót → In lại &amp; nhặt ngay</li></ul></div>
-              </div>
-              <div class="sos-col">
-                <div class="sos-blabel no">❌ Chưa nhặt</div>
-                <div class="sos-arr"></div>
-                <div class="sos-node sos-case"><div class="sos-label">TH2 — Chưa nhặt</div>Đã in nhưng mất đơn vật lý hoặc chưa in thành đơn</div>
-                <div class="sos-arr"></div>
-                <div class="sos-node sos-resolve"><div class="sos-label">✅ Hướng xử lý</div><ul><li><strong>In lại</strong> toàn bộ đơn bị mất</li><li>Nhặt hàng ngay</li><li>Giao <strong>1 bạn GH duy nhất</strong> xử lý toàn bộ</li><li>Follow đến khi <strong>done</strong> mới giao đợt mới</li></ul></div>
-              </div>
-            </div>
-          </div>
-          <div class="sos-col">
-            <div class="sos-blabel c2">🔷 Trạng thái 2: Chưa xử lý</div>
-            <div class="sos-arr"></div>
-            <div class="sos-node sos-case"><div class="sos-label">Điều kiện tiên quyết</div>Đảm bảo các đơn "Đã in chưa gói" đã được <strong>gói xong</strong> và đã <strong>bắn đơn</strong></div>
-            <div class="sos-arr"></div>
-            <div class="sos-node sos-resolve"><div class="sos-label">✅ Hướng xử lý</div><ul><li>In tiếp tục tất cả đơn "Chưa xử lý"</li><li>Nhặt hàng cho toàn bộ đơn vừa in</li><li>Giao cho <strong>1 bạn GH duy nhất</strong> xử lý</li><li>Follow đến khi <strong>done</strong> mới giao đợt mới</li></ul></div>
-          </div>
-        </div>
-        <div class="sos-arr o" style="margin-top:8px;"></div>
-        <div class="sos-node sos-checkpoint"><strong>✓ Checkpoint:</strong> Tất cả đơn SOS ngày hôm trước đã được xử lý xong?</div>
-        <div class="sos-arr o"></div>
-        <div class="sos-node sos-end">🚀 TIẾP TỤC QUY TRÌNH NHẶT HÀNG THÔNG THƯỜNG</div>
-      </div>
-      <div class="sos-legend">
-        <div class="sos-leg-item"><div class="sos-label">NGUYÊN TẮC VÀNG</div><p>Luôn chỉ định <strong>1 bạn GH duy nhất</strong> xử lý đơn SOS cũ — không chia việc</p></div>
-        <div class="sos-leg-item"><div class="sos-label">NGUYÊN TẮC FOLLOW</div><p>Phải <strong>follow đến khi done</strong> — không giao đợt mới khi đợt cũ chưa xong</p></div>
-        <div class="sos-leg-item"><div class="sos-label">THỨ TỰ ƯU TIÊN</div><p>SOS ngày hôm trước → Chưa xử lý → Hàng nhặt đợt mới trong ngày</p></div>
-      </div>
-    </div>
-  ` },
-  mkt: {
-    label: '📣 Marketing',
-    'chay-quang-cao': { title: 'Chạy quảng cáo Shopee Ads', date: 'T3/2026', owner: 'Marketing Manager', body: `<h2>Quy trình setup chiến dịch</h2><p>Điền nội dung SOP thực tế vào đây.</p>` },
-    'content-san-pham': { title: 'Quy trình content sản phẩm', date: 'T3/2026', owner: 'Content Lead', body: `<h2>Checklist nội dung</h2><p>Điền nội dung SOP thực tế vào đây.</p>` },
-    'flash-sale': { title: 'Đăng ký Flash Sale', date: 'T3/2026', owner: 'Marketing Manager', body: `<h2>Quy trình đăng ký</h2><p>Điền nội dung SOP thực tế vào đây.</p>` }
-  },
-  hcns: {
-    label: '👥 HCNS',
-    'onboarding': { title: 'Onboarding nhân viên mới', date: 'T3/2026', owner: 'HR Manager', body: `<h2>Checklist onboarding</h2><p>Điền nội dung SOP thực tế vào đây.</p>` },
-    'cham-cong': { title: 'Chấm công / nghỉ phép', date: 'T3/2026', owner: 'HR Manager', body: `<h2>Hướng dẫn chấm công</h2><p>Điền nội dung SOP thực tế vào đây.</p>` },
-    'luong-thuong': { title: 'Tính lương & thưởng', date: 'T3/2026', owner: 'HR Manager', body: `<h2>Công thức tính lương</h2><p>Điền nội dung SOP thực tế vào đây.</p>` }
-  }
-};
+let currentFile='';
 
 function toggleSection(el){el.closest('.nav-section').classList.toggle('open')}
-function openDept(key){const g=document.querySelector('[data-dept-group="'+key+'"]');if(g){g.classList.add('open');g.querySelector('.nav-item').click()}}
-function loadDoc(dept,docId){const d=docs[dept]?.[docId];if(!d)return;document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));event.target.classList.add('active');document.getElementById('breadcrumb').innerHTML='<span class="home" onclick="showHome()">SOP Nội Bộ</span><span class="sep">›</span><span>'+docs[dept].label+'</span><span class="sep">›</span><span class="current">'+d.title+'</span>';document.getElementById('docDept').textContent=docs[dept].label;document.getElementById('docTitle').textContent=d.title;document.getElementById('docDate').textContent=d.date;document.getElementById('docOwner').textContent=d.owner;document.getElementById('docBody').innerHTML=d.body;document.getElementById('homeView').style.display='none';document.getElementById('docView').style.display='block';document.getElementById('content').scrollTo(0,0)}
-function showHome(){document.getElementById('homeView').style.display='block';document.getElementById('docView').style.display='none';document.getElementById('breadcrumb').innerHTML='<span class="home" onclick="showHome()">SOP Nội Bộ</span>';document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'))}
-function handleSearch(val){const q=val.toLowerCase().trim();document.querySelectorAll('.nav-item').forEach(item=>{const text=(item.dataset.search||item.textContent).toLowerCase();item.style.display=(!q||text.includes(q))?'flex':'none'});if(q)document.querySelectorAll('.nav-section').forEach(s=>s.classList.add('open'))}
-loadDoc('kho','vao-ca');
 
+function load(file,docId,el){
+  if(el){
+    document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));
+    el.classList.add('active');
+  }
+  document.getElementById('home-view').style.display='none';
+  document.getElementById('frame-wrap').style.display='block';
+  const frame=document.getElementById('content-frame');
+  if(currentFile!==file){
+    frame.src=file+'#'+docId;
+    currentFile=file;
+  } else {
+    frame.contentWindow.postMessage({type:'showDoc',id:docId},'*');
+  }
+  // breadcrumb
+  const label=el?(el.closest('.nav-section').querySelector('.nav-section-label').textContent.trim()):'';
+  const title=el?el.textContent.trim():'';
+  document.getElementById('breadcrumb').innerHTML=
+    '<span class="home" onclick="showHome()">SOP Nội Bộ</span><span style="color:#cbd5e1"> › </span><span>'+label+'</span><span style="color:#cbd5e1"> › </span><span class="current">'+title+'</span>';
+}
+
+function showHome(){
+  document.getElementById('home-view').style.display='block';
+  document.getElementById('frame-wrap').style.display='none';
+  document.getElementById('breadcrumb').innerHTML='<span class="home" onclick="showHome()">SOP Nội Bộ</span>';
+  document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));
+}
+
+function handleSearch(val){
+  const q=val.toLowerCase().trim();
+  document.querySelectorAll('.nav-item').forEach(item=>{
+    const text=(item.dataset.search||item.textContent).toLowerCase();
+    item.style.display=(!q||text.includes(q))?'flex':'none';
+  });
+  if(q)document.querySelectorAll('.nav-section').forEach(s=>s.classList.add('open'));
+}
+
+// Load first doc on start
+window.addEventListener('load',()=>load('kho.html','vao-ca',document.querySelector('.nav-item.active')));
 </script>
 </body>
 </html>
